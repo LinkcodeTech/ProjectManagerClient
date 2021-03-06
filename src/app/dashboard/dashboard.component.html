@@ -1,2 +1,9 @@
 <app-dashboard-navbar></app-dashboard-navbar>
-<app-dashboard-sidenav></app-dashboard-sidenav>
+<div class="row">
+    <div class="col-2">
+        <app-dashboard-sidenav></app-dashboard-sidenav>
+    </div>
+    <div class="col-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>

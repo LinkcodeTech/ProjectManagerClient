@@ -1,12 +1,6 @@
-<div class="row">
-    <div class="col-md-2">
-        <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active active-tab">Home</a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['project']" routerLinkActive="router-link-active">Profile</a>
-            <a class="list-group-item list-group-item-action">Messages</a>
-            <a class="list-group-item list-group-item-action">Settings</a>
-        </div>
-    </div>
-    <router-outlet></router-outlet>
-
+<div class="list-group" id="list-tab" role="tablist">
+    <a class="list-group-item list-group-item-action" routerLink="project" routerLinkActive="active" >Projects</a>
+    <a class="list-group-item list-group-item-action" routerLink="report" routerLinkActive="active">Report</a>
+    <a class="list-group-item list-group-item-action" routerLink="profile" routerLinkActive="active">Profile</a>
+    <a class="list-group-item list-group-item-action">Logout</a>
 </div>
