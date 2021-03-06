@@ -9,6 +9,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ProjectListComponent,
     ReportComponent,
     ProfileComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    ProjectCreateComponent
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'project', pathMatch: 'full', },
       { path: 'project', component: ProjectListComponent },
+      { path: 'project/new', component: ProjectCreateComponent },
       { path: 'project/:id', component: ProjectDetailComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'report', component: ReportComponent },
