@@ -1,2 +1,9 @@
-<p>dashboard works!</p>
-<button [routerLink]="['/auth']" class="btn btn-primary" type="button">Logout</button>
+<app-dashboard-navbar></app-dashboard-navbar>
+<div class="row">
+    <div class="col-2">
+        <app-dashboard-sidenav></app-dashboard-sidenav>
+    </div>
+    <div class="col-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
