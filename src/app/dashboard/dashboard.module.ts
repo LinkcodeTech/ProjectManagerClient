@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardNavbarComponent } from './dashboard-navbar/dashboard-navbar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 
 @NgModule({
@@ -21,11 +23,14 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
     ReportComponent,
     ProfileComponent,
     ProjectDetailComponent,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    AddProjectComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }
