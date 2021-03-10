@@ -12,14 +12,14 @@ export class AddProjectComponent implements OnInit {
     private readonly fb: FormBuilder
   ) {
     this.addProjectForm = this.buildAddProjectForm();
+    console.log('this.addProjectForm', this.addProjectForm);
    }
 
   ngOnInit(): void {
   }
   private buildAddProjectForm(): FormGroup {
     return this.fb.group({
-      email: [null, [Validators.required]],
-      password: [null, [Validators.required,Validators.pattern('')]]
+      projectName: [null, [Validators.required]],
     });
   }
 }

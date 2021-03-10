@@ -1,23 +1,25 @@
 <div class="container">
 
-    <h3 class="lead text-center text-info my-3">
-        Add New Project
-    </h3>
+    <div class="component-border my-5">
+        <h3 class="lead text-center text-info my-3">
+            Add New Project
+        </h3>
 
-    <div>
-      <form method="">
+        <div>
+            <form method="" [formGroup]="addProjectForm">
 
-        <div class="form-group">
-          <label for="ProjectName">Project Name</label>
-          <input id="ProjectName" class="form-control" type="text" name="">
+                <div class="form-group">
+                    <label for="ProjectName">Project Name</label>
+                    <input id="ProjectName" class="form-control" formControlName="projectName" type="text" name="">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-success" type="button">Add Project</button>
+                </div>
+
+            </form>
+
         </div>
-
-        <div class="text-center">
-          <button class="btn btn-success" type="button">Add Project</button>
-        </div>
-
-      </form>
-
     </div>
 
 </div>
