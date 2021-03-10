@@ -1,9 +1,11 @@
 <app-dashboard-navbar></app-dashboard-navbar>
-<div class="row">
-    <div class="col-2">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2" style="padding-left: 0px !important; ">
         <app-dashboard-sidenav></app-dashboard-sidenav>
     </div>
-    <div class="col-10">
+    <div class="col-md-10">
         <router-outlet></router-outlet>
     </div>
+  </div>
 </div>
