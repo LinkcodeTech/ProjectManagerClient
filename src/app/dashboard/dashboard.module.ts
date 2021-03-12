@@ -10,7 +10,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { ProjectCreateComponent } from './project-create/project-create.component';
+
 import { AddProjectComponent } from './add-project/add-project.component';
 
 
@@ -23,7 +23,6 @@ import { AddProjectComponent } from './add-project/add-project.component';
     ReportComponent,
     ProfileComponent,
     ProjectDetailComponent,
-    ProjectCreateComponent,
     AddProjectComponent
   ],
   imports: [
