@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="component-border my-5">
+        <h3 class="lead text-center text-info my-3">
+            Add New Project
+        </h3>
+
+        <div>
+            <form method="" [formGroup]="registerForm">
+
+                <div class="form-group">
+                    <label for="ProjectName">Email Address</label>
+                    <input id="ProjectName" class="form-control" formControlName="email" type="text" name="">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" class="form-control" formControlName="password" type="password" name="">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input id="confirmPassword" class="form-control" formControlName="confirmPassword" type="password" name="">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-success" type="button">Add Project</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
