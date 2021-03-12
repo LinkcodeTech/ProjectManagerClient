@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthhttpService } from 'src/app/services/auth/authhttp.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private authhttp:AuthhttpService
   ) {
     this.loginForm = this.buildLoginForm();
     console.log(this.loginForm);
@@ -36,6 +38,15 @@ export class LoginComponent implements OnInit {
   }
 
   private login(){
+
+    const reqBody={email: this.loginForm.get('email').value,password: this.loginForm.get('password').value}
+
+    const response=this.authhttp.login("auth-admin",reqBody).subscribe((response:any)=>{
+      console.log(response);
+    });
+
+
+
     console.log('logged in');
   }
 
