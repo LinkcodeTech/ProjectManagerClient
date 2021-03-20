@@ -7,11 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisterToProjectmanagerComponent } from './register-to-projectmanager/register-to-projectmanager.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent, RegisterToProjectmanagerComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterToProjectmanagerComponent, ResetPassComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

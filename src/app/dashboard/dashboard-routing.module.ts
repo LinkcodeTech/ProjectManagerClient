@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { AddDeveloperComponent } from './add-developer/add-developer.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'project/:id', component: ProjectDetailComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'report', component: ReportComponent },
-      {path:'add-project', component: AddProjectComponent },
+      { path: 'add-project', component: AddProjectComponent },
+      { path: 'add-developer', component: AddDeveloperComponent },
     ]
   }
 ];

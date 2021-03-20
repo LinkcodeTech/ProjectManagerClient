@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 // import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private auth: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly active: ActivatedRoute
   ) {
     this.loginForm = this.buildLoginForm();
   }
@@ -44,7 +45,11 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe((response: User) => {
       localStorage.setItem('userId', response._id);
       localStorage.setItem('role', response.role);
-      this.router.navigate(['/dashboard']);
+      if (response.isVerified) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['../reset'], { relativeTo: this.active });
+      }
     }, (error: HttpErrorResponse) => {
 
     });

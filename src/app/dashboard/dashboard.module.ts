@@ -11,6 +11,7 @@ import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { AddDeveloperComponent } from './add-developer/add-developer.component';
 
 
 
@@ -23,7 +24,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
     ReportComponent,
     ProfileComponent,
     ProjectDetailComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    AddDeveloperComponent
   ],
   imports: [
     NgMultiSelectDropDownModule,
