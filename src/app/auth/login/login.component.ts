@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 // import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user.interface';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +16,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private auth: AuthService,
+    private readonly router: Router
   ) {
     this.loginForm = this.buildLoginForm();
-    console.log(this.loginForm);
   }
 
   ngOnInit(): void { }
@@ -23,31 +28,37 @@ export class LoginComponent implements OnInit {
   private buildLoginForm(): FormGroup {
     return this.fb.group({
       email: [null, [Validators.required]],
-      password: [null, [Validators.required,Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]]
+      password: [null, [Validators.required]]
     });
   }
 
 
-  public onLoginClick():void{
+  public onLoginClick(): void {
     this.validate();
-    if(this.loginForm.valid){
+    if (this.loginForm.valid) {
       this.login();
     }
   }
 
-  private login(){
-    console.log('logged in');
+  private login() {
+    this.auth.login(this.loginForm.value).subscribe((response: User) => {
+      localStorage.setItem('userId', response._id);
+      localStorage.setItem('role', response.role);
+      this.router.navigate(['/dashboard']);
+    }, (error: HttpErrorResponse) => {
+
+    });
   }
 
-  get email():FormControl{
+  get email(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }
 
-  get password():FormControl{
+  get password(): FormControl {
     return this.loginForm.get('password') as FormControl;
   }
 
-  private validate(){
+  private validate() {
     this.email.markAsTouched();
     this.password.markAsTouched();
   }

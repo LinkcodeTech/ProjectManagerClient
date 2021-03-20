@@ -5,7 +5,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisterToProjectmanagerComponent } from './register-to-projectmanager/register-to-projectmanager.component';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { RegisterToProjectmanagerComponent } from './register-to-projectmanager/
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }
