@@ -5,12 +5,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthhttpService {
+export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  login(apiRoute:string,reqBody:{email:string,password:string}) {
-    return this.http.post(environment.hostURL+apiRoute,reqBody);
+  login(reqBody: { email: string, password: string }) {
+    return this.http.post(environment.hostURL + '/user/login', reqBody);
   }
 
 }
