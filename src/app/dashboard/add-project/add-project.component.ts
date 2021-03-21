@@ -13,15 +13,15 @@ export class AddProjectComponent implements OnInit {
   disabled = false;
   ShowFilter = false;
   limitSelection = false;
-  cities: Array<any> = [];
+  developers: Array<any> = [];
   selectedItems: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
 
   constructor(
     private readonly fb: FormBuilder
   ) {
-    this.addProjectForm = this.buildAddProjectForm();
-    console.log('this.addProjectForm', this.addProjectForm);
+    //this.addProjectForm = this.buildAddProjectForm();
+    //console.log('this.addProjectForm', this.addProjectForm);
   }
 
   ngOnInit(): void {
@@ -32,12 +32,12 @@ export class AddProjectComponent implements OnInit {
     return this.fb.group({
       projectName: [null, [Validators.required]],
       ProjectManager: [null],
-      city: [this.selectedItems]
+      developer: [this.selectedItems]
     });
   }
 
   private getDropdownData() {
-    this.cities = [
+    this.developers = [
       { item_id: 1, item_text: 'New Delhi' },
       { item_id: 2, item_text: 'Mumbai' },
       { item_id: 3, item_text: 'Bangalore' },
@@ -52,7 +52,7 @@ export class AddProjectComponent implements OnInit {
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit: 5,
       allowSearchFilter: this.ShowFilter
     };
   }
@@ -74,6 +74,11 @@ export class AddProjectComponent implements OnInit {
       this.dropdownSettings = Object.assign({}, this.dropdownSettings, { limitSelection: null });
     }
   }
+
+  onAddClick(){
+    console.log(this.addProjectForm.value);
+  }
+
 
 }
 

@@ -2,7 +2,7 @@
     <a class="list-group-item list-group-item-action" routerLink="project" routerLinkActive="active">Projects</a>
     <a class="list-group-item list-group-item-action" routerLink="report" routerLinkActive="active">Report</a>
     <a class="list-group-item list-group-item-action" routerLink="profile" routerLinkActive="active">Profile</a>
-    <a *ngIf="userRole == 'ADMIN'" class="list-group-item list-group-item-action"
+    <a *ngIf="userRole == 'ADMIN'" class="list-group-item list-group-item-action" routerLink="developer-details"
         routerLinkActive="active">Developer</a>
     <a (click)="logout()" class="list-group-item list-group-item-action">Logout</a>
 </div>

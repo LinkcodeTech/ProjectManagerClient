@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AddDeveloperComponent } from './add-developer/add-developer.component';
+import { DeveloperDetailsComponent } from './developer-details/developer-details.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'report', component: ReportComponent },
       { path: 'add-project', component: AddProjectComponent },
       { path: 'add-developer', component: AddDeveloperComponent },
+      { path: 'developer-details', component: DeveloperDetailsComponent}
     ]
   }
 ];
