@@ -17,4 +17,8 @@ export class AuthService {
     return this.http.post(environment.hostURL+"/user", reqBody);
   }
 
+  getAllDevelopers(){
+    return this.http.get(environment.hostURL+"/user/dev");
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-developer-details',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeveloperDetailsComponent implements OnInit {
 
-  constructor() { }
+  developers:Array<any>=[];
+
+  constructor(
+    private authService:AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.getdata();
   }
+
+
+  getdata(){
+    this.authService.getAllDevelopers().subscribe((response:any)=>{
+      // console.log('response',response);
+      this.developers=response;
+    });
+
+  }
+
+
 
 }
