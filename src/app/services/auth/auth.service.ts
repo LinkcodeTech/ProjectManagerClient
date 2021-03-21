@@ -13,4 +13,8 @@ export class AuthService {
     return this.http.post(environment.hostURL + '/user/login', reqBody);
   }
 
+  addDeveloper(reqBody:{firstName:string, lastName:string, email:string, password:string,skills:string[],role:string}){
+    return this.http.post(environment.hostURL+"/user", reqBody);
+  }
+
 }

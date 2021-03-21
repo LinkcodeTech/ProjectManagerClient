@@ -37,7 +37,7 @@
 
             <div class="form-group">
               <label for="Developer">Skills</label>
-              <ng-multiselect-dropdown name="skills" [settings]="dropdownSettings" [placeholder]="'Select Skills'" [data]="skills" formControlName="skills" [disabled]="disabled" (onSelect)="onItemSelect($event)">
+              <ng-multiselect-dropdown name="skills" [settings]="dropdownSettings" [placeholder]="'Select Skills'" [data]="skills" formControlName="skills" [disabled]="disabled" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
               </ng-multiselect-dropdown>
           </div>
 
