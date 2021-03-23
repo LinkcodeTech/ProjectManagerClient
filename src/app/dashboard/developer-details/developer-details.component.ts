@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class DeveloperDetailsComponent implements OnInit {
 
   developers:Array<any>=[];
+  isLoading:boolean=false;
 
   constructor(
     private authService:AuthService
@@ -20,9 +21,11 @@ export class DeveloperDetailsComponent implements OnInit {
 
 
   getdata(){
+    this.isLoading=true;
     this.authService.getAllDevelopers().subscribe((response:any)=>{
       // console.log('response',response);
       this.developers=response;
+      this.isLoading=false;
     });
 
   }

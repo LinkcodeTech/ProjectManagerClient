@@ -1,11 +1,17 @@
-<div>
+<div class="container" *ngIf="isLoading">
+  <div class="row rowmid justify-content-center align-items-center">
+    <app-loader></app-loader>
+  </div>
+</div>
+
+<div *ngIf="!isLoading">
   <div class="container">
       <div class="float-right">
-          <button class="btn btn-primary m-2" type="button" [routerLink]="['../add-developer']" routerLinkActive="router-link-active">Add developer</button>
+          <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-developer']" routerLinkActive="router-link-active">Add developer</button>
       </div>
   </div>
   <div class="container">
-      <table class="table">
+      <table class="table table-bordered table-hover">
           <thead>
               <tr>
                   <th scope="col">#</th>
