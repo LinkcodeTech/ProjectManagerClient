@@ -1,6 +1,7 @@
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-add-project',
@@ -17,8 +18,10 @@ export class AddProjectComponent implements OnInit {
   selectedItems: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
 
+  isLoading:boolean=false;
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private authService:AuthService
   ) {
     //this.addProjectForm = this.buildAddProjectForm();
     //console.log('this.addProjectForm', this.addProjectForm);
@@ -37,15 +40,16 @@ export class AddProjectComponent implements OnInit {
   }
 
   private getDropdownData() {
-    this.developers = [
-      { item_id: 1, item_text: 'New Delhi' },
-      { item_id: 2, item_text: 'Mumbai' },
-      { item_id: 3, item_text: 'Bangalore' },
-      { item_id: 4, item_text: 'Pune' },
-      { item_id: 5, item_text: 'Chennai' },
-      { item_id: 6, item_text: 'Navsari' }
-    ];
-    this.selectedItems = [{ item_id: 4, item_text: 'Pune' }, { item_id: 6, item_text: 'Navsari' }];
+    // this.developers = [
+    //   { item_id: 1, item_text: 'New Delhi' },
+    //   { item_id: 2, item_text: 'Mumbai' },
+    //   { item_id: 3, item_text: 'Bangalore' },
+    //   { item_id: 4, item_text: 'Pune' },
+    //   { item_id: 5, item_text: 'Chennai' },
+    //   { item_id: 6, item_text: 'Navsari' }
+    // ];
+    this.getData();
+    this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -77,6 +81,17 @@ export class AddProjectComponent implements OnInit {
 
   onAddClick(){
     console.log(this.addProjectForm.value);
+  }
+
+  getData(){
+    this.isLoading=true;
+    this.authService.getAllDevelopers().subscribe((response:any)=>{
+      for(let i=0;i<response.length;++i)
+      {
+        this.developers.push({item_id:i+1, item_text:response[i].email});
+      }
+      this.isLoading=false;
+    });
   }
 
 
