@@ -8,6 +8,8 @@ import { ReportComponent } from './report/report.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AddDeveloperComponent } from './add-developer/add-developer.component';
 import { DeveloperDetailsComponent } from './developer-details/developer-details.component';
+import { ProjectManagerDetailsComponent } from './project-manager-details/project-manager-details.component';
+import { AddProjectManagerComponent } from './add-project-manager/add-project-manager.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
       { path: 'report', component: ReportComponent },
       { path: 'add-project', component: AddProjectComponent },
       { path: 'add-developer', component: AddDeveloperComponent },
-      { path: 'developer-details', component: DeveloperDetailsComponent}
+      { path: 'developer-details', component: DeveloperDetailsComponent},
+      { path: 'project-manager-details', component: ProjectManagerDetailsComponent},
+      { path: 'add-project-manager', component: AddProjectManagerComponent}
     ]
   }
 ];

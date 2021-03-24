@@ -22,9 +22,7 @@
                     <label for="ProjectManager">Project Manager</label>
                     <select id="ProjectManager" formControlName="ProjectManager" class="form-control">
                         <option value="" disabled selected>Select Project Manager</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        <option *ngFor="let manager of ProjectManagers">{{manager}}</option>
                       </select>
                 </div>
                 <div>

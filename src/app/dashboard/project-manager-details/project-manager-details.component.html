@@ -1,0 +1,34 @@
+<div class="container" *ngIf="isLoading">
+  <div class="row rowmid justify-content-center align-items-center">
+    <app-loader></app-loader>
+  </div>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="container">
+      <div class="float-right my-4">
+          <button class="btn btn-primary" type="button" [routerLink]="['../add-project-manager']" routerLinkActive="router-link-active">Add Project Manager</button>
+      </div>
+  </div>
+  <div class="container">
+    <table class="table table-bordered table-hover">
+      <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Email</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let manager of projectmanagers;index as i;" scope="row">
+            <td>{{i+1}}</td>
+            <td>{{manager.firstName}}</td>
+            <td>{{manager.lastName}}</td>
+            <td>{{manager.email}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+  </div>
+</div>

@@ -17,8 +17,16 @@ export class AuthService {
     return this.http.post(environment.hostURL+"/user", reqBody);
   }
 
+  addProjectManager(reqBody:{firstName:string, lastName:string, email:string, role:string, password:string}){
+    return this.http.post(environment.hostURL+"/user", reqBody);
+  }
+
   getAllDevelopers(){
     return this.http.get(environment.hostURL+"/user/dev");
+  }
+
+  getAllProjectManagers(){
+    return this.http.get(environment.hostURL+"/user/project-manager");
   }
 
 }

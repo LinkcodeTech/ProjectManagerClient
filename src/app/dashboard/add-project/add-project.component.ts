@@ -19,6 +19,7 @@ export class AddProjectComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
 
   isLoading:boolean=false;
+  ProjectManagers: Array<any> = [];
   constructor(
     private readonly fb: FormBuilder,
     private authService:AuthService
@@ -90,11 +91,16 @@ export class AddProjectComponent implements OnInit {
       {
         this.developers.push({item_id:i+1, item_text:response[i].email});
       }
+    });
+
+    this.authService.getAllProjectManagers().subscribe((response:any)=>{
+      for(let i=0;i<response.length;++i)
+      {
+        this.ProjectManagers.push(response[i].email);
+      }
       this.isLoading=false;
     });
   }
-
-
 }
 
 
