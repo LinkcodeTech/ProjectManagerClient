@@ -24,6 +24,9 @@ export class AuthService {
   getAllDevelopers(){
     return this.http.get(environment.hostURL+"/user/dev");
   }
+  resetPassword(reqBody:{oldPass:string,newPass:string}){
+    return this.http.put(environment.hostURL+"/user/"+localStorage.getItem('userId'),reqBody);
+  }
 
   getAllProjectManagers(){
     return this.http.get(environment.hostURL+"/user/project-manager");

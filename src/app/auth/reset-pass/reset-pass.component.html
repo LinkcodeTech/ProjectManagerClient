@@ -17,7 +17,10 @@
                     </div>
                     <div class="form-group">
                         <label for="ConfirmPassword">Confirm Password</label>
-                        <input id="ConfirmPassword" formControlName="confirmPassword" class="form-control" type="password" name="">
+                        <input id="ConfirmPassword" formControlName="confirmPassword" (keyup)="matchPasswords()" class="form-control" type="password" name="">
+                    </div>
+                    <div *ngIf="!passwordMatched">
+                        <small class="text-danger">Both passwords must match</small>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" (click)="onResetClick()" type="submit">Set Password</button>

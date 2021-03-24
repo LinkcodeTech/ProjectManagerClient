@@ -1,3 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { User } from './../../../../../ProjectManagerServer/src/user/entities/user.entity';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './../../services/auth/auth.service';
+import { AuthModule } from './../auth.module';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPassComponent implements OnInit {
   resetPasswordForm:FormGroup;
+  passwordMatched:boolean;
   constructor(
-    private readonly fb:FormBuilder
+    private readonly fb:FormBuilder,
+    private auth: AuthService,
+    private router : Router,
+    private readonly active: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.resetPasswordForm=this.buldResetForm();
+    this.passwordMatched=false;
   }
   private buldResetForm():FormGroup{
     return this.fb.group(
@@ -24,7 +34,24 @@ export class ResetPassComponent implements OnInit {
   }
   onResetClick(){
     this.validate();
+    if(this.resetPasswordForm.valid){
+      this.resetPassword();
+    }
     console.log(this.resetPasswordForm);
+  }
+  private resetPassword(){
+    const reqBody={
+      oldPass: this.resetPasswordForm.get('oldPassword').value,
+      newPass: this.resetPasswordForm.get('newPassword').value,
+    }
+  this.auth.resetPassword(reqBody).subscribe((Response:User)=>{
+    if(Response){
+      this.router.navigate(['/dashboard']);
+    }
+
+  },(error: HttpErrorResponse)=>{
+console.log(error);
+  });
   }
   get oldpassword():FormControl{
     return this.resetPasswordForm.get('oldPassword') as FormControl;
@@ -39,6 +66,15 @@ export class ResetPassComponent implements OnInit {
     this.oldpassword.markAsTouched();
     this.newpassword.markAsTouched();
     this.confirmpassword.markAsTouched();
+  }
+  matchPasswords(){
+    
+    if(this.resetPasswordForm.get('newPassword').value==this.resetPasswordForm.get('confirmPassword').value){
+      this.passwordMatched=true;
+    }else{
+      this.passwordMatched=false;
+    }
+
   }
 
 }
