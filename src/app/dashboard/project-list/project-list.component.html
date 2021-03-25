@@ -1,41 +1,33 @@
-<div>
-    <div class="container">
-        <div class="float-right">
-            <button class="btn btn-primary m-2" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active">New project</button>
-        </div>
-    </div>
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col"><button type="button" class="btn btn-default btn-lg">
-                        <i class="fas fa-cog"></i> 
-                      </button></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container" *ngIf="isLoading">
+  <div class="row rowmid justify-content-center align-items-center">
+    <app-loader></app-loader>
+  </div>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="container">
+      <div class="float-right">
+          <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active">New Project</button>
+      </div>
+  </div>
+  <div class="container">
+      <table class="table table-bordered table-hover">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Project Manager</th>
+                  <th scope="col">Project Details</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let project of projects;index as i;" scope="row">
+                <td>{{i+1}}</td>
+                <td>{{project.name}}</td>
+                <td>{{project.projectManager}}</td>
+                <td><button class="btn btn-info" type="button">Project Details</button></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>

@@ -21,15 +21,24 @@ export class AuthService {
     return this.http.post(environment.hostURL+"/user", reqBody);
   }
 
+  addProject(reqBody:{name:string, projectManager:string,developers:string[]}){
+    return this.http.post(environment.hostURL+"/project", reqBody);
+  }
+
   getAllDevelopers(){
     return this.http.get(environment.hostURL+"/user/dev");
-  }
-  resetPassword(reqBody:{oldPass:string,newPass:string}){
-    return this.http.put(environment.hostURL+"/user/"+localStorage.getItem('userId'),reqBody);
   }
 
   getAllProjectManagers(){
     return this.http.get(environment.hostURL+"/user/project-manager");
+  }
+
+  getAllProjects(){
+    return this.http.get(environment.hostURL+"/project");
+  }
+
+  resetPassword(reqBody:{oldPass:string,newPass:string}){
+    return this.http.put(environment.hostURL+"/user/"+localStorage.getItem('userId'),reqBody);
   }
 
 }

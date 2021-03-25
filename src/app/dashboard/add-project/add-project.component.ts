@@ -2,6 +2,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-project',
@@ -20,9 +21,11 @@ export class AddProjectComponent implements OnInit {
 
   isLoading:boolean=false;
   ProjectManagers: Array<any> = [];
+  addedDevelopers:string[]=[];
   constructor(
     private readonly fb: FormBuilder,
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router
   ) {
     //this.addProjectForm = this.buildAddProjectForm();
     //console.log('this.addProjectForm', this.addProjectForm);
@@ -35,8 +38,8 @@ export class AddProjectComponent implements OnInit {
   private buildAddProjectForm(): FormGroup {
     return this.fb.group({
       projectName: [null, [Validators.required]],
-      ProjectManager: [null],
-      developer: [this.selectedItems]
+      projectManager: [null],
+      developers: [this.selectedItems]
     });
   }
 
@@ -61,12 +64,20 @@ export class AddProjectComponent implements OnInit {
       allowSearchFilter: this.ShowFilter
     };
   }
+
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
+    this.selectedItems.push(item);
+    //console.log('onItemSelect', item);
   }
+
   onSelectAll(items: any) {
-    console.log('onSelectAll', items);
+    for(let i=0;i<items.length;++i)
+    {
+      this.selectedItems.push(items[i]);
+    }
+    //console.log('onSelectAll', items);
   }
+
   toogleShowFilter() {
     this.ShowFilter = !this.ShowFilter;
     this.dropdownSettings = Object.assign({}, this.dropdownSettings, { allowSearchFilter: this.ShowFilter });
@@ -80,9 +91,20 @@ export class AddProjectComponent implements OnInit {
     }
   }
 
-  onAddClick(){
-    console.log(this.addProjectForm.value);
+  validate(){
+
   }
+
+  onAddClick(){
+    //console.log(this.addProjectForm.value);
+    this.validate();
+    //console.log('this.selecteditems',this.selectedItems);
+    if(this.addProjectForm.valid)
+    {
+      this.addProject();
+    }
+  }
+
 
   getData(){
     this.isLoading=true;
@@ -92,7 +114,7 @@ export class AddProjectComponent implements OnInit {
         this.developers.push({item_id:i+1, item_text:response[i].email});
       }
     });
-
+    console.log('developers',this.developers)
     this.authService.getAllProjectManagers().subscribe((response:any)=>{
       for(let i=0;i<response.length;++i)
       {
@@ -101,6 +123,30 @@ export class AddProjectComponent implements OnInit {
       this.isLoading=false;
     });
   }
+
+  addProject(){
+
+    for(let i=0;i<this.selectedItems.length;++i)
+    {
+      this.addedDevelopers.push(this.selectedItems[i].item_text);
+    }
+    const reqBody={
+      name: this.addProjectForm.get('projectName').value,
+      projectManager: this.addProjectForm.get('projectManager').value,
+      developers: this.addedDevelopers
+    }
+    console.log('addedDevelopers',this.addedDevelopers);
+    console.log('manager',this.addProjectForm.get('projectManager').value);
+
+
+    this.authService.addProject(reqBody).subscribe((response)=>{
+      console.log('response',response);
+    });
+
+    this.router.navigate(['dashboard/project']);
+
+  }
+
 }
 
 
