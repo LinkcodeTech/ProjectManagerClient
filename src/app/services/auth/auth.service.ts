@@ -33,10 +33,6 @@ export class AuthService {
     return this.http.get(environment.hostURL+"/user/project-manager");
   }
 
-  getAllProjects(){
-    return this.http.get(environment.hostURL+"/project");
-  }
-
   resetPassword(reqBody:{oldPass:string,newPass:string}){
     return this.http.put(environment.hostURL+"/user/"+localStorage.getItem('userId'),reqBody);
   }

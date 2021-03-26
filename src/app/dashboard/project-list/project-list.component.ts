@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProjectDetailsService } from 'src/app/services/project-data-services/project-details.service';
 
 @Component({
   selector: 'app-project-list',
@@ -11,7 +13,9 @@ export class ProjectListComponent implements OnInit {
   isLoading:boolean=false;
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private projectDetailsService:ProjectDetailsService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -21,8 +25,8 @@ export class ProjectListComponent implements OnInit {
 
   getData(){
     this.isLoading=true;
-    this.authService.getAllProjects().subscribe((response:any)=>{
-      //console.log('response',response);
+    this.projectDetailsService.getAllProjects().subscribe((response:any)=>{
+      console.log('response',response);
       this.projects=response;
       this.isLoading=false;
     });

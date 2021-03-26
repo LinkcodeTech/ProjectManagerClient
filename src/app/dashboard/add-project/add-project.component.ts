@@ -33,7 +33,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+
     this.addProjectForm = this.buildAddProjectForm();
   }
   private buildAddProjectForm(): FormGroup {
@@ -116,8 +116,8 @@ export class AddProjectComponent implements OnInit {
         this.developers.push({item_id:i+1, item_text:response[i].email});
       }
     });
-    console.log('developers',this.developers)
-    
+    //console.log('developers',this.developers)
+
   }
   getPMData(){
     this.authService.getAllProjectManagers().subscribe((response:any)=>{
