@@ -15,6 +15,7 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //console.log("Oninit called!")
     this.getData();
   }
 

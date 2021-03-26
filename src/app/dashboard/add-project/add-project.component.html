@@ -1,7 +1,7 @@
 <div class="container" *ngIf="isLoading">
-  <div class="row rowmid justify-content-center align-items-center">
-    <app-loader></app-loader>
-  </div>
+    <div class="row rowmid justify-content-center align-items-center">
+        <app-loader></app-loader>
+    </div>
 </div>
 <div class="container" *ngIf="!isLoading">
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Developer">Developer</label>
-                    <ng-multiselect-dropdown name="developer" [settings]="dropdownSettings" [placeholder]="'Select Developer'" [data]="developers" formControlName="developers" [disabled]="disabled" (onSelect)="onItemSelect($event)">
+                    <ng-multiselect-dropdown name="developer" [settings]="dropdownSettings" [data]="developers" [placeholder]="'Select Developer'" formControlName="developers" [disabled]="disabled" (onSelect)="onItemSelect($event)">
                     </ng-multiselect-dropdown>
 
                 </div>

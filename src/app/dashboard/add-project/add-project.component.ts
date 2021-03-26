@@ -29,10 +29,11 @@ export class AddProjectComponent implements OnInit {
   ) {
     //this.addProjectForm = this.buildAddProjectForm();
     //console.log('this.addProjectForm', this.addProjectForm);
+    this.getDropdownData();
   }
 
   ngOnInit(): void {
-    this.getDropdownData();
+   
     this.addProjectForm = this.buildAddProjectForm();
   }
   private buildAddProjectForm(): FormGroup {
@@ -52,7 +53,8 @@ export class AddProjectComponent implements OnInit {
     //   { item_id: 5, item_text: 'Chennai' },
     //   { item_id: 6, item_text: 'Navsari' }
     // ];
-    this.getData();
+    this.getDeveloperData();
+    this.getPMData();
     this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
@@ -106,7 +108,7 @@ export class AddProjectComponent implements OnInit {
   }
 
 
-  getData(){
+  getDeveloperData(){
     this.isLoading=true;
     this.authService.getAllDevelopers().subscribe((response:any)=>{
       for(let i=0;i<response.length;++i)
@@ -115,6 +117,9 @@ export class AddProjectComponent implements OnInit {
       }
     });
     console.log('developers',this.developers)
+    
+  }
+  getPMData(){
     this.authService.getAllProjectManagers().subscribe((response:any)=>{
       for(let i=0;i<response.length;++i)
       {
