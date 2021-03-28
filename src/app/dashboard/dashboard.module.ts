@@ -16,6 +16,7 @@ import { DeveloperDetailsComponent } from './developer-details/developer-details
 import { LoaderComponent } from './loader/loader.component';
 import { ProjectManagerDetailsComponent } from './project-manager-details/project-manager-details.component';
 import { AddProjectManagerComponent } from './add-project-manager/add-project-manager.component';
+import { BoardComponent } from './board/board.component';
 
 
 
@@ -33,7 +34,8 @@ import { AddProjectManagerComponent } from './add-project-manager/add-project-ma
     DeveloperDetailsComponent,
     LoaderComponent,
     ProjectManagerDetailsComponent,
-    AddProjectManagerComponent
+    AddProjectManagerComponent,
+    BoardComponent
   ],
   imports: [
     NgMultiSelectDropDownModule,

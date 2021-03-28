@@ -15,20 +15,18 @@ export class AddProjectComponent implements OnInit {
   disabled = false;
   ShowFilter = false;
   limitSelection = false;
-  developers: Array<any> = [];
+  developers: any[] = [];
   selectedItems: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
 
-  isLoading:boolean=false;
+  isLoading = false;
   ProjectManagers: Array<any> = [];
-  addedDevelopers:string[]=[];
+  addedDevelopers: string[] = [];
   constructor(
     private readonly fb: FormBuilder,
-    private authService:AuthService,
-    private router:Router
+    private authService: AuthService,
+    private router: Router
   ) {
-    //this.addProjectForm = this.buildAddProjectForm();
-    //console.log('this.addProjectForm', this.addProjectForm);
     this.getDropdownData();
   }
 
@@ -47,19 +45,14 @@ export class AddProjectComponent implements OnInit {
   private getDropdownData() {
     // this.developers = [
     //   { item_id: 1, item_text: 'New Delhi' },
-    //   { item_id: 2, item_text: 'Mumbai' },
-    //   { item_id: 3, item_text: 'Bangalore' },
-    //   { item_id: 4, item_text: 'Pune' },
-    //   { item_id: 5, item_text: 'Chennai' },
-    //   { item_id: 6, item_text: 'Navsari' }
     // ];
     this.getDeveloperData();
     this.getPMData();
     this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: '_id',
+      textField: 'email',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 5,
@@ -69,15 +62,10 @@ export class AddProjectComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedItems.push(item);
-    //console.log('onItemSelect', item);
   }
 
   onSelectAll(items: any) {
-    for(let i=0;i<items.length;++i)
-    {
-      this.selectedItems.push(items[i]);
-    }
-    //console.log('onSelectAll', items);
+    this.selectedItems.concat(items);
   }
 
   toogleShowFilter() {
@@ -93,63 +81,48 @@ export class AddProjectComponent implements OnInit {
     }
   }
 
-  validate(){
+  validate() {
 
   }
 
-  onAddClick(){
-    //console.log(this.addProjectForm.value);
+  onAddClick() {
     this.validate();
-    //console.log('this.selecteditems',this.selectedItems);
-    if(this.addProjectForm.valid)
-    {
+    if (this.addProjectForm.valid) {
       this.addProject();
     }
   }
 
 
-  getDeveloperData(){
-    this.isLoading=true;
-    this.authService.getAllDevelopers().subscribe((response:any)=>{
-      for(let i=0;i<response.length;++i)
-      {
-        this.developers.push({item_id:i+1, item_text:response[i].email});
-      }
+  getDeveloperData() {
+    this.isLoading = true;
+    this.authService.getAllDevelopers().subscribe((response: any) => {
+      this.developers = response;
     });
-    //console.log('developers',this.developers)
-
   }
-  getPMData(){
-    this.authService.getAllProjectManagers().subscribe((response:any)=>{
-      for(let i=0;i<response.length;++i)
-      {
+
+  getPMData() {
+    this.authService.getAllProjectManagers().subscribe((response: any) => {
+      for (let i = 0; i < response.length; ++i) {
         this.ProjectManagers.push(response[i].email);
       }
-      this.isLoading=false;
+      this.isLoading = false;
     });
   }
 
-  addProject(){
+  addProject() {
 
-    for(let i=0;i<this.selectedItems.length;++i)
-    {
-      this.addedDevelopers.push(this.selectedItems[i].item_text);
-    }
-    const reqBody={
+    this.selectedItems.forEach((item) => {
+      this.addedDevelopers.push(item._id);
+    });
+    const reqBody = {
       name: this.addProjectForm.get('projectName').value,
       projectManager: this.addProjectForm.get('projectManager').value,
       developers: this.addedDevelopers
-    }
-    console.log('addedDevelopers',this.addedDevelopers);
-    console.log('manager',this.addProjectForm.get('projectManager').value);
+    };
 
-
-    this.authService.addProject(reqBody).subscribe((response)=>{
-      console.log('response',response);
+    this.authService.addProject(reqBody).subscribe((response) => {
+      this.router.navigate(['dashboard/project']);
     });
-
-    this.router.navigate(['dashboard/project']);
-
   }
 
 }

@@ -10,6 +10,7 @@ import { AddDeveloperComponent } from './add-developer/add-developer.component';
 import { DeveloperDetailsComponent } from './developer-details/developer-details.component';
 import { ProjectManagerDetailsComponent } from './project-manager-details/project-manager-details.component';
 import { AddProjectManagerComponent } from './add-project-manager/add-project-manager.component';
+import { BoardComponent } from './board/board.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'project', pathMatch: 'full', },
       { path: 'project', component: ProjectListComponent },
       { path: 'project/:id', component: ProjectDetailComponent },
+      { path: 'project/:id/board', component: BoardComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'report', component: ReportComponent },
       { path: 'add-project', component: AddProjectComponent },
