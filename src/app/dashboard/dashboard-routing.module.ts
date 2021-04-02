@@ -1,3 +1,4 @@
+import { AddTaskComponent } from './add-task/add-task.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { NgModule } from '@angular/core';
@@ -26,9 +27,10 @@ const routes: Routes = [
       { path: 'report', component: ReportComponent },
       { path: 'add-project', component: AddProjectComponent },
       { path: 'add-developer', component: AddDeveloperComponent },
-      { path: 'developer-details', component: DeveloperDetailsComponent},
-      { path: 'project-manager-details', component: ProjectManagerDetailsComponent},
-      { path: 'add-project-manager', component: AddProjectManagerComponent}
+      { path: 'developer-details', component: DeveloperDetailsComponent },
+      { path: 'project-manager-details', component: ProjectManagerDetailsComponent },
+      { path: 'add-project-manager', component: AddProjectManagerComponent },
+      { path: 'project/:id/add-task', component: AddTaskComponent }
     ]
   }
 ];

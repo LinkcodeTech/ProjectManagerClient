@@ -3,4 +3,5 @@ export interface Project<T> {
     name: string;
     projectManager: string;
     developers: T[];
+    tasks: any[];
 }

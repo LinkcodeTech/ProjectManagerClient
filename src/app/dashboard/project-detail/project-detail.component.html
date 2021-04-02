@@ -1,26 +1,56 @@
 <div class="container" *ngIf="isLoading">
-  <div class="row rowmid justify-content-center align-items-center">
-    <app-loader></app-loader>
-  </div>
+    <div class="row rowmid justify-content-center align-items-center">
+        <app-loader></app-loader>
+    </div>
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="container">
-    <p class="lead my-2">Project Manager: {{project.projectManager}}</p>
-    <p class="mb-2">Developers List: </p>
-    <table class="table table-bordered table-hover my-3">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let developer of project.developers;index as i;">
-          <td>{{i+1}}</td>
-          <td>({{developer.firstName}} {{developer.lastName}}) {{developer.email}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="container">
+        <div class="float-right">
+            <button class="btn btn-success" type="button" [routerLink]="['add-task']" routerLinkActive="router-link-active">Add Task</button>
+        </div>
+        <p class="lead my-2">Project Manager: {{project.projectManager}}</p>
+
+        <p class="mb-2">Developers List: </p>
+        <table class="table table-bordered table-hover my-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let developer of project.developers;index as i;">
+                    <td>{{i+1}}</td>
+                    <td>({{developer.firstName}} {{developer.lastName}}) {{developer.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <p>Task List</p>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Discription</th>
+                        <th scope="col">Assigned To</th>
+                        <th scope="col">Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks;index as i;">
+                        <td>{{i+1}}</td>
+                        <td>{{task.title}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.assignedTo}}</td>
+                        <td>{{task.status}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>

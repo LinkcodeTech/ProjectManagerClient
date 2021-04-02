@@ -14,6 +14,7 @@ export class ProjectDetailComponent implements OnInit {
   projectId: string;
   isLoading = false;
   project: Project<User>;
+  tasks:any[];
   constructor(
     private projectDetailsService: ProjectDetailsService,
     private active: ActivatedRoute
@@ -28,6 +29,7 @@ export class ProjectDetailComponent implements OnInit {
     this.projectId = this.active.snapshot.paramMap.get('id');
     this.projectDetailsService.getprojectDetails(this.projectId).subscribe((project: Project<User>) => {
       this.project = project;
+      this.tasks=project.tasks;
       this.isLoading = false;
     });
   }

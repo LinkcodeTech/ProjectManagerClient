@@ -62,10 +62,11 @@ export class AddProjectComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedItems.push(item);
+    console.log('item', item)
   }
 
   onSelectAll(items: any) {
-    this.selectedItems.concat(items);
+   this.selectedItems.concat(items);
   }
 
   toogleShowFilter() {
