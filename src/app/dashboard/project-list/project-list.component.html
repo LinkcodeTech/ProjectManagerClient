@@ -7,11 +7,11 @@
 <div *ngIf="!isLoading">
   <div class="container">
       <div class="float-right">
-          <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active">New Project</button>
+          <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'">New Project</button>
       </div>
   </div>
   <div class="container">
-      <table class="table table-bordered table-hover">
+      <table class="table table-bordered table-hover my-4">
           <thead>
               <tr>
                   <th scope="col">#</th>

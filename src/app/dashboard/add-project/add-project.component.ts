@@ -62,11 +62,19 @@ export class AddProjectComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedItems.push(item);
-    console.log('item', item)
+  }
+
+  onItemDeselect(item:any)
+  {
+    console.log('this.selectedItems.indexOf(item)',this.selectedItems.indexOf(item));
+    this.selectedItems.splice(this.selectedItems.indexOf(item),1);
   }
 
   onSelectAll(items: any) {
-   this.selectedItems.concat(items);
+    this.selectedItems.splice(0,this.selectedItems.length);
+   items.forEach(item => {
+     this.selectedItems.push(item);
+   });
   }
 
   toogleShowFilter() {

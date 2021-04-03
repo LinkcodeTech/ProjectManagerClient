@@ -15,6 +15,9 @@ export class ProjectDetailComponent implements OnInit {
   isLoading = false;
   project: Project<User>;
   tasks:any[];
+
+  userRole = localStorage.getItem('role');
+
   constructor(
     private projectDetailsService: ProjectDetailsService,
     private active: ActivatedRoute

@@ -12,6 +12,8 @@ export class ProjectListComponent implements OnInit {
   projects:Array<any>=[];
   isLoading:boolean=false;
 
+  userRole = localStorage.getItem('role');
+
   constructor(
     private authService:AuthService,
     private projectDetailsService:ProjectDetailsService,

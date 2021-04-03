@@ -73,11 +73,10 @@ export class AddDeveloperComponent implements OnInit {
     //console.log('onItemSelect', item);
   }
   onSelectAll(items: any) {
-    for(let i=0;i<items.length;++i)
-    {
-      this.selectedItems.push(items[i]);
-    }
-    //console.log('onSelectAll', items);
+    this.selectedItems.splice(0,this.selectedItems.length);
+    items.forEach(item => {
+      this.selectedItems.push(item);
+    });
   }
   toogleShowFilter() {
     this.ShowFilter = !this.ShowFilter;
@@ -124,9 +123,9 @@ export class AddDeveloperComponent implements OnInit {
 
     this.authService.addDeveloper(reqBody).subscribe((response)=>{
       console.log('response',response);
+      this.router.navigate(['dashboard/developer-details']);
     });
 
-    this.router.navigate(['dashboard/developer-details']);
 
   }
 

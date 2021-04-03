@@ -6,8 +6,8 @@
 <div class="container" *ngIf="!isLoading">
 
     <div class="component-border my-5">
-        <h3 class="lead text-center text-info my-3">
-            Add New Task <br>to <br> {{projectName}}
+        <h3 class="lead text-center text-primary my-3">
+            Add New Task To {{projectName}}
         </h3>
 
         <div>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-success" type="button" (click)="onAddTaskClick()">Add Project</button>
+                    <button class="btn btn-success" type="button" (click)="onAddTaskClick()">Add Task</button>
                 </div>
 
             </form>

@@ -12,12 +12,13 @@
   </div>
   <div class="container">
       <table class="table table-bordered table-hover">
-          <thead>
+          <thead class="thead-dark">
               <tr>
                   <th scope="col">#</th>
                   <th scope="col">First</th>
                   <th scope="col">Last</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Skills</th>
               </tr>
           </thead>
           <tbody>
@@ -26,6 +27,7 @@
                 <td>{{developer.firstName}}</td>
                 <td>{{developer.lastName}}</td>
                 <td>{{developer.email}}</td>
+                <td><span class="badge badge-primary mx-2" *ngFor="let skill of developer.skills">{{skill}}</span></td>
               </tr>
           </tbody>
       </table>
