@@ -1,33 +1,33 @@
 <div class="container" *ngIf="isLoading">
-  <div class="row rowmid justify-content-center align-items-center">
-    <app-loader></app-loader>
-  </div>
+    <div class="row rowmid justify-content-center align-items-center">
+        <app-loader></app-loader>
+    </div>
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="container">
-      <div class="float-right">
-          <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'">New Project</button>
-      </div>
-  </div>
-  <div class="container">
-      <table class="table table-bordered table-hover my-4">
-          <thead>
-              <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Project Manager</th>
-                  <th scope="col">Project Details</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let project of projects;index as i;" scope="row">
-                <td>{{i+1}}</td>
-                <td>{{project.name}}</td>
-                <td>{{project.projectManager}}</td>
-                <td><button class="btn btn-info" type="button" [routerLink]="['../project' , project._id]">Project Details</button></td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+    <div class="container">
+        <div class="float-right">
+            <button class="btn btn-primary my-4" type="button" [routerLink]="['../add-project']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'">New Project</button>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-hover my-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Project Manager</th>
+                    <th scope="col">Project Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects;index as i;" scope="row">
+                    <td>{{i+1}}</td>
+                    <td>{{project.name}}</td>
+                    <td>{{project.projectManager.firstName}} {{project.projectManager.lastName}}</td>
+                    <td><button class="btn btn-info" type="button" [routerLink]="['../project' , project._id]">Project Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

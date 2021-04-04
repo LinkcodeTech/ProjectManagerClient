@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { count } from 'console';
 import { Project } from 'src/app/interfaces/project.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { ProjectDetailsService } from 'src/app/services/project-data-services/project-details.service';
@@ -16,6 +17,7 @@ export class ProjectDetailComponent implements OnInit {
   isLoading = false;
   project: Project<User>;
   tasks: any[];
+  progress:number;
 
   userRole = localStorage.getItem('role');
 
@@ -27,6 +29,7 @@ export class ProjectDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    
   }
 
   getData() {
@@ -36,13 +39,28 @@ export class ProjectDetailComponent implements OnInit {
       this.project = project;
       this.tasks = project.tasks;
       this.isLoading = false;
+      this.getProgressData();
     });
+    
+  }
+  getProgressData(){
+    let doneCount=0;
+    this.tasks.forEach(task => {
+      if (task.status=='DONE') {
+        doneCount++;
+      }
+      this.progress=(doneCount/this.tasks.length)*100;
+      console.log('this.progress', this.progress)
+      
+    })
+
   }
 
   updateStatus(task: any): void {
     this.taskService.updateTask(task._id, task).subscribe((res) => {
 
     });
+    this.getProgressData();
   }
 
 }
