@@ -57,7 +57,13 @@
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
                         <td>{{task.assignedTo}}</td>
-                        <td>{{task.status}}</td>
+                        <td>
+                            <select #status [(ngModel)]="task.status" (change)="updateStatus(task)">
+                                <option value="INPROGRESS">In Progress</option>
+                                <option value="TODO">To Do</option>
+                                <option value="DONE">Done</option>
+                            </select>
+                        </td>
 
                     </tr>
                 </tbody>
