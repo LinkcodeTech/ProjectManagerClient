@@ -64,17 +64,18 @@ export class AddProjectComponent implements OnInit {
     this.selectedItems.push(item);
   }
 
-  onItemDeselect(item:any)
-  {
-    console.log('this.selectedItems.indexOf(item)',this.selectedItems.indexOf(item));
-    this.selectedItems.splice(this.selectedItems.indexOf(item),1);
+  onItemDeselect(item: any) {
+    const index = this.selectedItems.findIndex((value, i) => value._id === item._id);
+    if (index !== -1) {
+      this.selectedItems.splice(index, 1);
+    }
   }
 
   onSelectAll(items: any) {
-    this.selectedItems.splice(0,this.selectedItems.length);
-   items.forEach(item => {
-     this.selectedItems.push(item);
-   });
+    this.selectedItems.splice(0, this.selectedItems.length);
+    items.forEach(item => {
+      this.selectedItems.push(item);
+    });
   }
 
   toogleShowFilter() {
@@ -111,9 +112,9 @@ export class AddProjectComponent implements OnInit {
 
   getPMData() {
     this.authService.getAllProjectManagers().subscribe((response: any) => {
-      for (let i = 0; i < response.length; ++i) {
-        this.ProjectManagers.push(response[i].email);
-      }
+      response.forEach(element => {
+        this.ProjectManagers.push(element.email);
+      });
       this.isLoading = false;
     });
   }
