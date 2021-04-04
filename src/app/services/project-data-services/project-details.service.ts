@@ -13,7 +13,8 @@ export class ProjectDetailsService {
   ) { }
 
   getAllProjects() {
-    return this.http.get(environment.hostURL + '/project');
+    const url = localStorage.getItem('role') !== 'ADMIN' ? `/user/${localStorage.getItem('userId')}/project` : '/project';
+    return this.http.get(environment.hostURL + url);
   }
 
   getprojectDetails(id: string) {

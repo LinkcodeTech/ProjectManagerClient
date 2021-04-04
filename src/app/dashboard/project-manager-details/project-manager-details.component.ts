@@ -7,10 +7,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./project-manager-details.component.scss']
 })
 export class ProjectManagerDetailsComponent implements OnInit {
-  isLoading:boolean=false;
-  projectmanagers:Array<any>=[];
+  isLoading = false;
+  projectmanagers: Array<any> = [];
   constructor(
-    private authService:AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -18,12 +18,11 @@ export class ProjectManagerDetailsComponent implements OnInit {
   }
 
 
-  getdata(){
-    this.isLoading=true;
-    this.authService.getAllProjectManagers().subscribe((response:any)=>{
-      // console.log('response',response);
-      this.projectmanagers=response;
-      this.isLoading=false;
+  getdata() {
+    this.isLoading = true;
+    this.authService.getAllProjectManagers().subscribe((response: any) => {
+      this.projectmanagers = response;
+      this.isLoading = false;
     });
 
   }

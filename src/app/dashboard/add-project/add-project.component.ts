@@ -13,14 +13,14 @@ import { Router } from '@angular/router';
 export class AddProjectComponent implements OnInit {
   addProjectForm: FormGroup;
   disabled = false;
-  ShowFilter = false;
+  showFilter = false;
   limitSelection = false;
   developers: any[] = [];
   selectedItems: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
 
   isLoading = false;
-  ProjectManagers: Array<any> = [];
+  projectManagers: Array<any> = [];
   addedDevelopers: string[] = [];
   constructor(
     private readonly fb: FormBuilder,
@@ -56,7 +56,7 @@ export class AddProjectComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 5,
-      allowSearchFilter: this.ShowFilter
+      allowSearchFilter: this.showFilter
     };
   }
 
@@ -79,8 +79,8 @@ export class AddProjectComponent implements OnInit {
   }
 
   toogleShowFilter() {
-    this.ShowFilter = !this.ShowFilter;
-    this.dropdownSettings = Object.assign({}, this.dropdownSettings, { allowSearchFilter: this.ShowFilter });
+    this.showFilter = !this.showFilter;
+    this.dropdownSettings = Object.assign({}, this.dropdownSettings, { allowSearchFilter: this.showFilter });
   }
 
   handleLimitSelection() {
@@ -112,18 +112,16 @@ export class AddProjectComponent implements OnInit {
 
   getPMData() {
     this.authService.getAllProjectManagers().subscribe((response: any) => {
-      response.forEach(element => {
-        this.ProjectManagers.push(element.email);
-      });
+      this.projectManagers = response;
       this.isLoading = false;
     });
   }
 
   addProject() {
-
     this.selectedItems.forEach((item) => {
       this.addedDevelopers.push(item._id);
     });
+
     const reqBody = {
       name: this.addProjectForm.get('projectName').value,
       projectManager: this.addProjectForm.get('projectManager').value,

@@ -11,48 +11,46 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class AddProjectManagerComponent implements OnInit {
   addProjectManagerForm: FormGroup;
   constructor(
-    private fb:FormBuilder,
-    private authService:AuthService,
-    private router:Router
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.addProjectManagerForm=this.buildAddProjectManagerForm();
+    this.addProjectManagerForm = this.buildAddProjectManagerForm();
   }
 
   private buildAddProjectManagerForm(): FormGroup {
     return this.fb.group({
       firstName: [null, [Validators.required]],
       lastName: [null],
-      email:[null],
+      email: [null],
     });
   }
 
-  validate(){
+  validate() {
 
   }
 
 
-  onAddClick(){
+  onAddClick() {
     this.validate();
-    //console.log('this.selecteditems',this.selectedItems);
-    if(this.addProjectManagerForm.valid)
-    {
+    if (this.addProjectManagerForm.valid) {
       this.addProjectManager();
     }
   }
 
-  addProjectManager(){
-    const reqBody={
+  addProjectManager() {
+    const reqBody = {
       firstName: this.addProjectManagerForm.get('firstName').value,
       lastName: this.addProjectManagerForm.get('lastName').value,
       email: this.addProjectManagerForm.get('email').value,
       role: 'PM',
       password: this.addProjectManagerForm.get('firstName').value + '@PM' + this.addProjectManagerForm.get('lastName').value
-    }
+    };
 
-    this.authService.addProjectManager(reqBody).subscribe((response)=>{
-      console.log('response',response);
+    this.authService.addProjectManager(reqBody).subscribe((response) => {
+
     });
     this.router.navigate(['dashboard/project-manager-details']);
   }

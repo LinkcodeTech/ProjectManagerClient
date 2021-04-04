@@ -8,11 +8,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class DeveloperDetailsComponent implements OnInit {
 
-  developers:Array<any>=[];
-  isLoading:boolean=false;
+  developers: Array<any> = [];
+  isLoading = false;
 
   constructor(
-    private authService:AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -20,12 +20,11 @@ export class DeveloperDetailsComponent implements OnInit {
   }
 
 
-  getdata(){
-    this.isLoading=true;
-    this.authService.getAllDevelopers().subscribe((response:any)=>{
-      // console.log('response',response);
-      this.developers=response;
-      this.isLoading=false;
+  getdata() {
+    this.isLoading = true;
+    this.authService.getAllDevelopers().subscribe((response: any) => {
+      this.developers = response;
+      this.isLoading = false;
     });
 
   }

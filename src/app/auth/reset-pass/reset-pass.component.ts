@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from './../../../../../ProjectManagerServer/src/user/entities/user.entity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
-import { AuthModule } from './../auth.module';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,67 +11,72 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-pass.component.scss']
 })
 export class ResetPassComponent implements OnInit {
-  resetPasswordForm:FormGroup;
-  passwordMatched:boolean;
+  resetPasswordForm: FormGroup;
+  passwordMatched: boolean;
   constructor(
-    private readonly fb:FormBuilder,
+    private readonly fb: FormBuilder,
     private auth: AuthService,
-    private router : Router,
+    private router: Router,
     private readonly active: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.resetPasswordForm=this.buldResetForm();
-    this.passwordMatched=false;
+    this.resetPasswordForm = this.buldResetForm();
+    this.passwordMatched = false;
   }
-  private buldResetForm():FormGroup{
+  private buldResetForm(): FormGroup {
     return this.fb.group(
-      {oldPassword:[null,[Validators.required]],
-      newPassword:[null,[Validators.required]],
-      confirmPassword:[null,[Validators.required]]}
+      {
+        oldPassword: [null, [Validators.required]],
+        newPassword: [null, [Validators.required]],
+        confirmPassword: [null, [Validators.required]]
+      }
     );
   }
-  onResetClick(){
+  onResetClick() {
     this.validate();
-    if(this.resetPasswordForm.valid){
+    if (this.resetPasswordForm.valid) {
       this.resetPassword();
     }
-    console.log(this.resetPasswordForm);
   }
-  private resetPassword(){
-    const reqBody={
+  private resetPassword() {
+    const reqBody = {
       oldPass: this.resetPasswordForm.get('oldPassword').value,
       newPass: this.resetPasswordForm.get('newPassword').value,
-    }
-  this.auth.resetPassword(reqBody).subscribe((Response:User)=>{
-    if(Response){
-      this.router.navigate(['/dashboard']);
-    }
+    };
+    this.auth.resetPassword(reqBody).subscribe((Response: User) => {
+      if (Response) {
+        this.router.navigate(['/dashboard']);
+      }
 
-  },(error: HttpErrorResponse)=>{
-console.log(error);
-  });
+    }, (error: HttpErrorResponse) => {
+    });
   }
-  get oldpassword():FormControl{
+
+  get oldpassword(): FormControl {
     return this.resetPasswordForm.get('oldPassword') as FormControl;
   }
-  get newpassword():FormControl{
+
+  get newpassword(): FormControl {
     return this.resetPasswordForm.get('newPassword') as FormControl;
   }
-  get confirmpassword():FormControl{
+
+  get confirmpassword(): FormControl {
     return this.resetPasswordForm.get('confirmPassword') as FormControl;
   }
+
   private validate() {
     this.oldpassword.markAsTouched();
     this.newpassword.markAsTouched();
     this.confirmpassword.markAsTouched();
   }
-  matchPasswords(){
-    
-    if(this.resetPasswordForm.get('newPassword').value==this.resetPasswordForm.get('confirmPassword').value){
-      this.passwordMatched=true;
-    }else{
-      this.passwordMatched=false;
+
+  matchPasswords() {
+
+    if (this.resetPasswordForm.get('newPassword').value === this.resetPasswordForm.get('confirmPassword').value) {
+      this.passwordMatched = true;
+    } else {
+      this.passwordMatched = false;
     }
 
   }

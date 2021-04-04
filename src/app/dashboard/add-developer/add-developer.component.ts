@@ -19,17 +19,16 @@ export class AddDeveloperComponent implements OnInit {
   selectedItems: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
 
-  addedskillset:string[]=[];
+  addedskillset: string[] = [];
   private readonly active: ActivatedRoute
 
 
   constructor(
     private readonly fb: FormBuilder,
-    private authService:AuthService,
-    private router:Router
+    private authService: AuthService,
+    private router: Router
   ) {
-    //this.addDeveloperForm = this.buildAddDeveloperForm();
-    //console.log('this.addProjectForm', this.addProjectForm);
+    // this.addDeveloperForm = this.buildAddDeveloperForm();
   }
 
   ngOnInit(): void {
@@ -41,8 +40,8 @@ export class AddDeveloperComponent implements OnInit {
     return this.fb.group({
       firstName: [null, [Validators.required]],
       lastName: [null],
-      email:[null],
-      skills: [this.selectedItems,[Validators.required]]
+      email: [null],
+      skills: [this.selectedItems, [Validators.required]]
     });
   }
 
@@ -70,10 +69,9 @@ export class AddDeveloperComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedItems.push(item);
-    //console.log('onItemSelect', item);
   }
   onSelectAll(items: any) {
-    this.selectedItems.splice(0,this.selectedItems.length);
+    this.selectedItems.splice(0, this.selectedItems.length);
     items.forEach(item => {
       this.selectedItems.push(item);
     });
@@ -92,37 +90,32 @@ export class AddDeveloperComponent implements OnInit {
   }
 
 
-  validate():void{
+  validate(): void {
 
   }
 
 
-  onAddClick(){
+  onAddClick() {
     this.validate();
-    //console.log('this.selecteditems',this.selectedItems);
-    if(this.addDeveloperForm.valid)
-    {
+    if (this.addDeveloperForm.valid) {
       this.addDeveloper();
     }
   }
 
-  addDeveloper(){
-    for(let i=0;i<this.selectedItems.length;++i)
-    {
+  addDeveloper() {
+    for (let i = 0; i < this.selectedItems.length; ++i) {
       this.addedskillset.push(this.selectedItems[i].skill_data);
     }
-    const reqBody={
+    const reqBody = {
       firstName: this.addDeveloperForm.get('firstName').value,
       lastName: this.addDeveloperForm.get('lastName').value,
       email: this.addDeveloperForm.get('email').value,
       skills: this.addedskillset,
       role: 'DEV',
       password: this.addDeveloperForm.get('firstName').value + '@PM' + this.addDeveloperForm.get('lastName').value
-    }
-    //console.log('Addedskillset',this.addedskillset);
+    };
 
-    this.authService.addDeveloper(reqBody).subscribe((response)=>{
-      console.log('response',response);
+    this.authService.addDeveloper(reqBody).subscribe((response) => {
       this.router.navigate(['dashboard/developer-details']);
     });
 
