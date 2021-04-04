@@ -7,9 +7,14 @@
 <div *ngIf="!isLoading">
     <div class="container">
         <div class="float-right">
-            <button class="btn btn-success" type="button" [routerLink]="['add-task']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
+            <button class="btn btn-success" type="button" [routerLink]="['add-task']"
+                routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
         </div>
-        <p class="lead my-2">Project Manager: {{project.projectManager}}</p>
+        <p class="lead my-2">Project Manager: {{project.projectManager.firstName}} {{project.projectManager.lastName}}
+        </p>
+        <div class="progress m-4">
+            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+        </div>
 
         <p class="mb-2">Developers List: </p>
         <table class="table table-bordered table-hover my-3">
@@ -28,7 +33,8 @@
                     <td>{{developer.firstName}}</td>
                     <td>{{developer.lastName}}</td>
                     <td>{{developer.email}}</td>
-                    <td><span class="badge badge-primary mx-2" *ngFor="let skill of developer.skills">{{skill}}</span></td>
+                    <td><span class="badge badge-primary mx-2" *ngFor="let skill of developer.skills">{{skill}}</span>
+                    </td>
                 </tr>
             </tbody>
         </table>
