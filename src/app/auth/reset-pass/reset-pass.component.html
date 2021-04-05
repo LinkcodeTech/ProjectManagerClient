@@ -10,17 +10,28 @@
                     <div class="form-group">
                         <label for="Oldpassword">Old Password</label>
                         <input id="Oldpassword" formControlName="oldPassword" class="form-control" type="password" name="">
+                        <div *ngIf="resetPasswordForm.get('oldPassword')?.invalid && resetPasswordForm.get('oldPassword')?.touched">
+                          <small class="text-danger">Invalid Field</small>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="NewPassword">New Password</label>
                         <input id="NewPassword" formControlName="newPassword" class="form-control" type="password" name="">
+                        <div *ngIf="resetPasswordForm.get('newPassword')?.invalid && resetPasswordForm.get('newPassword')?.touched">
+                          <small class="text-danger">Invalid Field</small>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="ConfirmPassword">Confirm Password</label>
-                        <input id="ConfirmPassword" formControlName="confirmPassword" (keyup)="matchPasswords()" class="form-control" type="password" name="">
+                        <input id="ConfirmPassword" formControlName="confirmPassword" class="form-control" type="password" name="">
+                        <div *ngIf="resetPasswordForm.get('confirmPassword')?.invalid && resetPasswordForm.get('confirmPassword')?.touched">
+                          <small class="text-danger">Invalid Field</small>
+                        </div>
                     </div>
-                    <div *ngIf="!passwordMatched">
-                        <small class="text-danger">Both passwords must match</small>
+                    <div *ngIf="resetPasswordForm.get('newPassword').touched && resetPasswordForm.get('confirmPassword').touched">
+                        <div *ngIf="this.resetPasswordForm.get('newPassword').value !== this.resetPasswordForm.get('confirmPassword').value">
+                          <small class="text-danger">Both passwords must match</small>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" (click)="onResetClick()" type="submit">Set Password</button>

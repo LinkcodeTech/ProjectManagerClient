@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { copyFileSync } from 'fs';
 
 @Component({
   selector: 'app-reset-pass',
@@ -22,7 +23,6 @@ export class ResetPassComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetPasswordForm = this.buldResetForm();
-    this.passwordMatched = false;
   }
   private buldResetForm(): FormGroup {
     return this.fb.group(
@@ -36,7 +36,11 @@ export class ResetPassComponent implements OnInit {
   onResetClick() {
     this.validate();
     if (this.resetPasswordForm.valid) {
-      this.resetPassword();
+      if(this.passwordMatched)
+      {
+        this.resetPassword();
+        console.log("password has been reset");
+      }
     }
   }
   private resetPassword() {
@@ -69,15 +73,26 @@ export class ResetPassComponent implements OnInit {
     this.oldpassword.markAsTouched();
     this.newpassword.markAsTouched();
     this.confirmpassword.markAsTouched();
+    this.matchPasswords();
   }
 
   matchPasswords() {
 
-    if (this.resetPasswordForm.get('newPassword').value === this.resetPasswordForm.get('confirmPassword').value) {
-      this.passwordMatched = true;
-    } else {
+    if(this.resetPasswordForm.get('newPassword').touched && this.resetPasswordForm.get('confirmPassword').touched) {
+      if (this.resetPasswordForm.get('newPassword').value === this.resetPasswordForm.get('confirmPassword').value) {
+        if(this.resetPasswordForm.get('newPassword').value!==null && this.resetPasswordForm.get('newPassword').value!==null){
+          this.passwordMatched=true;
+        }
+        else
+          this.passwordMatched=false;
+      }
+      else
+        this.passwordMatched=false;
+    }
+    else{
       this.passwordMatched = false;
     }
+    // console.log('passwordMatched',this.passwordMatched);
 
   }
 
