@@ -6,12 +6,20 @@
 
 <div *ngIf="!isLoading">
     <div class="container">
-        <div class="float-right">
+        <div class="my-3">
+          <h4>Project Name: {{project.name}}</h4>
+        </div>
+
+        <div class="component-border">
+          <div class="float-right">
             <button class="btn btn-success" type="button" [routerLink]="['add-task']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
         </div>
-        <p class="lead my-2">Project Manager: {{project.projectManager.firstName}} {{project.projectManager.lastName}}
+        <p class="lead my-4">Project Manager: {{project.projectManager.firstName}} {{project.projectManager.lastName}}
         </p>
-        <div class="progress m-4">
+        <div class="lead">
+          Task Progress Bar
+        </div>
+        <div class="progress my-4">
             <div class="progress-bar" role="progressbar" [style.width.%]="progress"></div>
         </div>
 
@@ -38,13 +46,13 @@
             </tbody>
         </table>
         <div>
-            <p>Task List</p>
+            <p class="mb-2">Task List:</p>
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Discription</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Assigned To</th>
                         <th scope="col">Status</th>
 
@@ -67,6 +75,7 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 
