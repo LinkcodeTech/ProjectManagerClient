@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardNavbarComponent implements OnInit {
 
   isCollapsed=false;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -16,5 +17,8 @@ export class DashboardNavbarComponent implements OnInit {
   public toggleCollapse():void{
     this.isCollapsed=!this.isCollapsed;
   }
-
+  public logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/']);
+  }
 }

@@ -116,6 +116,7 @@ export class AddDeveloperComponent implements OnInit {
     };
 
     this.authService.addDeveloper(reqBody).subscribe((response) => {
+      console.log('response', response)
       this.router.navigate(['dashboard/developer-details']);
     });
 

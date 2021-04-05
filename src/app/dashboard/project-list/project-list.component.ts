@@ -24,6 +24,7 @@ export class ProjectListComponent implements OnInit {
     this.isLoading = true;
     this.projectDetailsService.getAllProjects().subscribe((response: any) => {
       this.projects = response;
+      console.log('projects', this.projects)
       this.isLoading = false;
       
     });

@@ -17,9 +17,4 @@ export class DashboardSidenavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public logout(): void {
-    localStorage.clear();
-    this.router.navigate(['/']);
-  }
-
 }
