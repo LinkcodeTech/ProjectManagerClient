@@ -1,1 +1,31 @@
-<p>board works!</p>
+<div cdkDropListGroup>
+    <div class="example-container">
+        <h2>To do</h2>
+
+        <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of todo" cdkDrag>
+                <h5>Title : {{item.title}}</h5>
+                Description : {{item.description}} <br> AssignedTO : {{item.assignedTo.firstName}} {{item.assignedTo.lastName}}</div>
+        </div>
+    </div>
+    <div class="example-container">
+        <h2>In Progress</h2>
+
+        <div cdkDropList [cdkDropListData]="inprogress" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of inprogress" cdkDrag>
+                <h5>Title : {{item.title}}</h5>
+                Description : {{item.description}} <br> AssignedTO : {{item.assignedTo.firstName}} {{item.assignedTo.lastName}}
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <h2>Done</h2>
+
+        <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of done" cdkDrag>
+                <h5>Title : {{item.title}}</h5>
+                Description : {{item.description}} <br> AssignedTO : {{item.assignedTo.firstName}} {{item.assignedTo.lastName}}</div>
+        </div>
+    </div>
+</div>

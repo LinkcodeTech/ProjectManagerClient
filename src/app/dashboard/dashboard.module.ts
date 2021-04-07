@@ -18,6 +18,7 @@ import { ProjectManagerDetailsComponent } from './project-manager-details/projec
 import { AddProjectManagerComponent } from './add-project-manager/add-project-manager.component';
 import { BoardComponent } from './board/board.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -44,7 +45,8 @@ import { AddTaskComponent } from './add-task/add-task.component';
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   
   
