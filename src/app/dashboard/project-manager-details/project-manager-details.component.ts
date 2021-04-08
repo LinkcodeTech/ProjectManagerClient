@@ -23,6 +23,8 @@ export class ProjectManagerDetailsComponent implements OnInit {
     this.authService.getAllProjectManagers().subscribe((response: any) => {
       this.projectmanagers = response;
       this.isLoading = false;
+    },(error:any)=>{
+      console.log('error',error);
     });
 
   }

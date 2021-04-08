@@ -25,6 +25,9 @@ export class DeveloperDetailsComponent implements OnInit {
     this.authService.getAllDevelopers().subscribe((response: any) => {
       this.developers = response;
       this.isLoading = false;
+    },
+    (error:any)=>{
+      console.log('error',error);
     });
 
   }

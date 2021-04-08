@@ -39,6 +39,9 @@ export class ProjectDetailComponent implements OnInit {
       this.tasks = project.tasks;
       this.isLoading = false;
       this.getProgressData();
+    },
+    (error:any)=>{
+      console.log('error',error);
     });
 
   }

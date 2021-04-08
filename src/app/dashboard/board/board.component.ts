@@ -62,7 +62,7 @@ export class BoardComponent implements OnInit {
           this.updatedTask.status="DONE";
           this.updateStatus(this.updatedTask);
         }
-        
+
 
     }
   }
@@ -83,8 +83,11 @@ export class BoardComponent implements OnInit {
           this.done.push(task);
         }
         this.getProgressData();
-        this.isLoading = false;
       });
+      this.isLoading = false;
+    },
+    (error:any)=>{
+      console.log('error',error);
     });
 
   }

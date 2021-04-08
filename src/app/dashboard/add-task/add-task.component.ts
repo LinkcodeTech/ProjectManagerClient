@@ -61,8 +61,13 @@ export class AddTaskComponent implements OnInit {
         taskId: response._id,
       };
       this.projectDataService.putTaskToProject(reqBody, this.projectId).subscribe((response1) => {
+      },(error:any)=>{
+        console.log('error',error);
       });
+
       this.router.navigate([`dashboard/project/${this.projectId}/board`]);
+    },(error:any)=>{
+      console.log('error',error);
     });
   }
 
@@ -77,8 +82,8 @@ export class AddTaskComponent implements OnInit {
       this.Developers = project.developers;
       this.projectName = project.name;
       this.isLoading=false;
-    }, () => {
-
+    }, (error) => {
+      console.log('error',error);
     });
 
   }
