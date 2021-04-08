@@ -62,7 +62,7 @@ export class AddTaskComponent implements OnInit {
       };
       this.projectDataService.putTaskToProject(reqBody, this.projectId).subscribe((response1) => {
       });
-      this.router.navigate(['dashboard/project/' + this.projectId]);
+      this.router.navigate([`dashboard/project/${this.projectId}/board`]);
     });
   }
 
@@ -71,10 +71,12 @@ export class AddTaskComponent implements OnInit {
   }
 
   private getDeveloperData() {
+    this.isLoading=true;
     this.projectId = this.active.snapshot.paramMap.get('id');
     this.projectDataService.getprojectDetails(this.projectId).subscribe((project: Project<User>) => {
       this.Developers = project.developers;
       this.projectName = project.name;
+      this.isLoading=false;
     }, () => {
 
     });

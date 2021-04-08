@@ -12,8 +12,8 @@
 
         <div class="component-border">
           <div class="float-right">
-            <button class="btn btn-success" type="button" [routerLink]="['add-task']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
-        </div>
+            <button class="btn btn-primary" type="button" [routerLink]="['board']" routerLinkActive="router-link-active">Project Task Board</button>
+          </div>
         <p class="lead my-4">Project Manager: {{project.projectManager.firstName}} {{project.projectManager.lastName}}
         </p>
         <div class="lead">
@@ -64,13 +64,7 @@
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
                         <td>{{task.assignedTo.firstName}} {{task.assignedTo.lastName}}</td>
-                        <td>
-                            <select #status [(ngModel)]="task.status" (change)="updateStatus(task)">
-                                <option value="INPROGRESS">In Progress</option>
-                                <option value="TODO">To Do</option>
-                                <option value="DONE">Done</option>
-                            </select>
-                        </td>
+                        <td>{{task.status}}</td>
 
                     </tr>
                 </tbody>
