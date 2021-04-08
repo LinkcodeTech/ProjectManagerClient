@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { count } from 'console';
 import { Project } from 'src/app/interfaces/project.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { ProjectDetailsService } from 'src/app/services/project-data-services/project-details.service';
@@ -29,7 +28,7 @@ export class ProjectDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-    
+
   }
 
   getData() {
@@ -41,7 +40,7 @@ export class ProjectDetailComponent implements OnInit {
       this.isLoading = false;
       this.getProgressData();
     });
-    
+
   }
   getProgressData(){
     let doneCount=0;
@@ -51,16 +50,16 @@ export class ProjectDetailComponent implements OnInit {
       }
       this.progress=(doneCount/this.tasks.length)*100;
       console.log('this.progress', this.progress)
-      
+
     })
 
   }
 
-  updateStatus(task: any): void {
-    this.taskService.updateTask(task._id, task).subscribe((res) => {
+  // updateStatus(task: any): void {
+  //   this.taskService.updateTask(task._id, task).subscribe((res) => {
 
-    });
-    this.getProgressData();
-  }
+  //   });
+  //   this.getProgressData();
+  // }
 
 }
