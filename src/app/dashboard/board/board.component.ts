@@ -47,19 +47,22 @@ export class BoardComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-        if(event.container.id=="cdk-drop-list-0")
+        if(event.container.id=="todo")
         {
           this.updatedTask.status="TODO"
+          this.updateStatus(this.updatedTask);
         }
-        else if(event.container.id=="cdk-drop-list-1")
+        else if(event.container.id=="inprogress")
         {
           this.updatedTask.status="INPROGRESS";
+          this.updateStatus(this.updatedTask);
         }
-        else if(event.container.id=="cdk-drop-list-2")
+        else if(event.container.id=="done")
         {
           this.updatedTask.status="DONE";
+          this.updateStatus(this.updatedTask);
         }
-        this.updateStatus(this.updatedTask);
+        
 
     }
   }
