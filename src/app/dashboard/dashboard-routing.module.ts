@@ -30,7 +30,6 @@ const routes: Routes = [
       { path: 'developer-details', component: DeveloperDetailsComponent },
       { path: 'project-manager-details', component: ProjectManagerDetailsComponent },
       { path: 'add-project-manager', component: AddProjectManagerComponent },
-      { path: 'project/:id/add-task', component: AddTaskComponent }
     ]
   }
 ];
