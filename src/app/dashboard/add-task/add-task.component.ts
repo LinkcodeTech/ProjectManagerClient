@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectDetailsService } from 'src/app/services/project-data-services/project-details.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Project } from 'src/app/interfaces/project.interface';
 import { User } from 'src/app/interfaces/user.interface';
 
@@ -18,6 +18,8 @@ export class AddTaskComponent implements OnInit {
   isLoading = false;
   projectId: string;
   projectName: string;
+
+  @Output() added = new EventEmitter<boolean>();
   constructor(
     private readonly fb: FormBuilder,
     private readonly projectDataService: ProjectDetailsService,
@@ -61,13 +63,13 @@ export class AddTaskComponent implements OnInit {
         taskId: response._id,
       };
       this.projectDataService.putTaskToProject(reqBody, this.projectId).subscribe((response1) => {
-      },(error:any)=>{
-        console.log('error',error);
+        this.added.emit(true);
+      }, (error: any) => {
+        console.log('error', error);
+        this.added.emit(false);
       });
-
-      this.router.navigate([`dashboard/project/${this.projectId}/board`]);
-    },(error:any)=>{
-      console.log('error',error);
+    }, (error: any) => {
+      console.log('error', error);
     });
   }
 
@@ -76,14 +78,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   private getDeveloperData() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.projectId = this.active.snapshot.paramMap.get('id');
     this.projectDataService.getprojectDetails(this.projectId).subscribe((project: Project<User>) => {
       this.Developers = project.developers;
       this.projectName = project.name;
-      this.isLoading=false;
+      this.isLoading = false;
     }, (error) => {
-      console.log('error',error);
+      console.log('error', error);
     });
 
   }

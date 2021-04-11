@@ -11,7 +11,7 @@
     </div>
     <div class="container-fluid component-border">
         <div class="float-right">
-            <button class="btn btn-success" type="button" [routerLink]="['../add-task']" routerLinkActive="router-link-active" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
+            <button class="btn btn-success" (click)="openModal(template)" type="button" *ngIf="userRole=='ADMIN'||userRole=='PM'">Add Task</button>
         </div>
         <div class="lead">
             Task Progress Bar
@@ -55,3 +55,7 @@
     </div>
 
 </div>
+
+<ng-template #template>
+    <app-add-task (added)="modalRef.hide();getData();"></app-add-task>
+  </ng-template>
