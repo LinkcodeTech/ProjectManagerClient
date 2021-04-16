@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -53,7 +54,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['../reset'], { relativeTo: this.active });
       }
     }, (error: HttpErrorResponse) => {
-
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Invalid credentials!..Please try again.',
+      });
     });
   }
 
