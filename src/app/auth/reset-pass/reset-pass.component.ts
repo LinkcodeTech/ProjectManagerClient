@@ -5,6 +5,7 @@ import { AuthService } from './../../services/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { copyFileSync } from 'fs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reset-pass',
@@ -23,7 +24,16 @@ export class ResetPassComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetPasswordForm = this.buldResetForm();
+    this.verifyAlert();
   }
+
+  verifyAlert() {
+    Swal.fire({
+      icon: 'info',
+      title: 'Please reset your password before moving forward',
+    });
+  }
+
   private buldResetForm(): FormGroup {
     return this.fb.group(
       {
@@ -39,7 +49,7 @@ export class ResetPassComponent implements OnInit {
       if(this.passwordMatched)
       {
         this.resetPassword();
-        console.log("password has been reset");
+        // console.log("password reset has been called..");
       }
     }
   }
@@ -48,12 +58,24 @@ export class ResetPassComponent implements OnInit {
       oldPass: this.resetPasswordForm.get('oldPassword').value,
       newPass: this.resetPasswordForm.get('newPassword').value,
     };
-    this.auth.resetPassword(reqBody).subscribe((Response: User) => {
-      if (Response) {
+    this.auth.resetPassword(reqBody).subscribe((response: User) => {
+      if (response) {
         this.router.navigate(['/dashboard']);
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Old credentials doesn't match!..Please try again.",
+        });
       }
 
     }, (error: HttpErrorResponse) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Old credentials doesn't match!..Please try again.",
+      });
     });
   }
 
