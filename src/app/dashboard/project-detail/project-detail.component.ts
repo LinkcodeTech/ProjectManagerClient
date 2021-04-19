@@ -58,11 +58,11 @@ export class ProjectDetailComponent implements OnInit {
 
   }
 
-  // updateStatus(task: any): void {
-  //   this.taskService.updateTask(task._id, task).subscribe((res) => {
+  updateStatus(task: any): void {
+    this.taskService.updateTask(task._id, task).subscribe((res) => {
 
-  //   });
-  //   this.getProgressData();
-  // }
+    });
+    this.getProgressData();
+  }
 
 }

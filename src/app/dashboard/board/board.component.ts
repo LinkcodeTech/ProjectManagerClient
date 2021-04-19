@@ -72,6 +72,9 @@ export class BoardComponent implements OnInit {
     this.projectId = this.active.snapshot.paramMap.get('id');
     this.projectservice.getprojectDetails(this.projectId).subscribe((project: Project<User>) => {
       this.project = project;
+      this.todo=[];
+      this.inprogress=[];
+      this.done=[];
       this.tasks = project.tasks;
       this.tasks.forEach(task => {
         if (task.status === 'TODO') {
