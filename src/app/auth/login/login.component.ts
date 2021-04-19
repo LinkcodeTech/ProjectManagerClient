@@ -27,7 +27,16 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.buildLoginForm();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.middleWare(); 
+    
+  }
+
+  middleWare(){
+    if(localStorage.getItem('userId')){
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   private buildLoginForm(): FormGroup {
     return this.fb.group({
