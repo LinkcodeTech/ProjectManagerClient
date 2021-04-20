@@ -1,10 +1,16 @@
 <div class="container" *ngIf="isLoading">
   <div class="row rowmid justify-content-center align-items-center">
-      <app-loader></app-loader>
+    <app-loader></app-loader>
   </div>
 </div>
-<div class="container" *ngIf="!isLoading">
-
-  <p>report works!</p>
-
+<div class="container my-4" *ngIf="!isLoading">
+  <div class="float-right">
+    <button class="btn btn-primary" (click)="openModal(template)" type="button">
+      Add New Report
+    </button>
+  </div>
 </div>
+
+<ng-template #template>
+  <app-add-report (added)="modalRef.hide()"></app-add-report>
+</ng-template>
