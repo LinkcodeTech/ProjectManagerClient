@@ -14,4 +14,8 @@ export class ReportService {
     return this.http.get(environment.hostURL + url);
   }
 
+  submitReport(reqBody:any){
+    return this.http.post(`${environment.hostURL}/report`,reqBody);
+  }
+
 }
