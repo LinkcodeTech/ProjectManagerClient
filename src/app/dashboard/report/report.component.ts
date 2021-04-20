@@ -22,7 +22,7 @@ export class ReportComponent implements OnInit {
     this.getdata();
   }
 
-  private getdata() {
+  getdata() {
     this.reports=[];
     this.isLoading=true
     this.reportService.getAllReportsByuserId().subscribe((response:any)=>{

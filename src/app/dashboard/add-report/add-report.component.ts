@@ -64,7 +64,9 @@ export class AddReportComponent implements OnInit {
         });
       }
     });
-    // console.log(this.developers);
+    // console.log(this.addReportForm.get('projectId').value)
+    console.log('projects',this.projects)
+    console.log(this.developers);
     const reqBody = {
       userId: localStorage.getItem('userId'),
       date: this.today,
