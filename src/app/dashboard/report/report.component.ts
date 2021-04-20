@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ReportService } from 'src/app/services/report-services/report.service';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -7,14 +8,30 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class ReportComponent implements OnInit {
 
-  isLoading=false;
-  userRole=localStorage.getItem('role');
+  isLoading = false;
+  reports: any[] = [];
+  userRole = localStorage.getItem('role');
   modalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService) { }
+  constructor(
+    private modalService: BsModalService,
+    private reportService:ReportService
+  ) { }
 
   ngOnInit(): void {
+    this.getdata();
+  }
 
+  private getdata() {
+    this.reports=[];
+    this.isLoading=true
+    this.reportService.getAllReportsByuserId().subscribe((response:any)=>{
+      this.reports=response;
+      this.isLoading=false;
+      // console.log('this.reports',this.reports);
+    },(error)=>{
+      console.log(error);
+    })
   }
 
   openModal(template: TemplateRef<any>) {
