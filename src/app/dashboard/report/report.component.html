@@ -1,1 +1,10 @@
-<p>report works!</p>
+<div class="container" *ngIf="isLoading">
+  <div class="row rowmid justify-content-center align-items-center">
+      <app-loader></app-loader>
+  </div>
+</div>
+<div class="container" *ngIf="!isLoading">
+
+  <p>report works!</p>
+
+</div>

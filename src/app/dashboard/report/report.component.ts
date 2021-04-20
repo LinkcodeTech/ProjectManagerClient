@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
 
+  isLoading=false;
+
   constructor() { }
 
   ngOnInit(): void {
