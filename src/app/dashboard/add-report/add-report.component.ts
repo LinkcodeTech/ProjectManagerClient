@@ -8,9 +8,10 @@ import { ProjectDetailsService } from 'src/app/services/project-data-services/pr
   styleUrls: ['./add-report.component.scss']
 })
 export class AddReportComponent implements OnInit {
-  isLoading=false;
+  isLoading = false;
   addReportForm: FormGroup;
-  projects:any[]=[];
+  projects: any[] = [];
+  today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
   constructor(
     private fb: FormBuilder,
@@ -30,14 +31,22 @@ export class AddReportComponent implements OnInit {
   }
 
   private getdata() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.projectService.getAllProjects().subscribe((response: any) => {
-      this.projects=response;
-      this.isLoading=false;
+      this.projects = response;
+      this.isLoading = false;
       // console.log(this.projects);
     }, (error: any) => {
       console.log('error', error);
     })
+  }
+
+  onAddClick() {
+
+  }
+
+  validate(){
+    // todo
   }
 
 
