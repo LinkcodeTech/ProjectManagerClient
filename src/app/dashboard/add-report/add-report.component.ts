@@ -62,6 +62,7 @@ export class AddReportComponent implements OnInit {
         project.developers.forEach(developer => {
           this.developers.push(developer._id);
         });
+        // this.developers.push(project.projectManager._id);
       }
     });
     // console.log(this.addReportForm.get('projectId').value)
