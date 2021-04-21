@@ -1,3 +1,4 @@
+import { AdminGuard } from './../admin.guard';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -25,11 +26,11 @@ const routes: Routes = [
       { path: 'project/:id/board', component: BoardComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'report', component: ReportComponent },
-      { path: 'add-project', component: AddProjectComponent },
-      { path: 'add-developer', component: AddDeveloperComponent },
+      { path: 'add-project',canActivate:[AdminGuard], component: AddProjectComponent },
+      { path: 'add-developer',canActivate:[AdminGuard], component: AddDeveloperComponent },
       { path: 'developer-details', component: DeveloperDetailsComponent },
       { path: 'project-manager-details', component: ProjectManagerDetailsComponent },
-      { path: 'add-project-manager', component: AddProjectManagerComponent },
+      { path: 'add-project-manager',canActivate:[AdminGuard], component: AddProjectManagerComponent },
     ]
   }
 ];
