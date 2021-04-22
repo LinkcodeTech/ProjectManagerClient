@@ -3,8 +3,11 @@
     <app-loader></app-loader>
   </div>
 </div>
-<div class="component-border" *ngIf="!isLoading">
-  <form method="" [formGroup]="addReportForm">
+<div *ngIf="!isLoading" class="component-border">
+  <h3 class="lead text-center text-primary my-3">
+    Add Daily Report
+  </h3>
+  <form method="" [formGroup]="addReportForm" class="component-border">
     <div class="form-group">
       <label for="date">Date</label>
       <input id="date" class="form-control" type="text" name="" [value]="today" disabled>
