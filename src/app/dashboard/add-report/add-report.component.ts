@@ -12,7 +12,7 @@ export class AddReportComponent implements OnInit {
   isLoading = false;
   addReportForm: FormGroup;
   projects: any[] = [];
-  developers:any[]=[];
+  developers: any[] = [];
   today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
 
   @Output() added = new EventEmitter<boolean>();
@@ -57,8 +57,8 @@ export class AddReportComponent implements OnInit {
   }
 
   submitReport() {
-    this.projects.forEach(project=>{
-      if(project._id===this.addReportForm.get('projectId').value){
+    this.projects.forEach(project => {
+      if (project._id === this.addReportForm.get('projectId').value) {
         project.developers.forEach(developer => {
           this.developers.push(developer._id);
         });
@@ -66,7 +66,7 @@ export class AddReportComponent implements OnInit {
       }
     });
     // console.log(this.addReportForm.get('projectId').value)
-    console.log('projects',this.projects)
+    console.log('projects', this.projects)
     console.log(this.developers);
     const reqBody = {
       userId: localStorage.getItem('userId'),
@@ -75,10 +75,10 @@ export class AddReportComponent implements OnInit {
       projectId: this.addReportForm.get('projectId').value,
       comment: this.addReportForm.get('comment').value
     }
-    this.reportService.submitReport(reqBody).subscribe((response:any)=>{
+    this.reportService.submitReport(reqBody).subscribe((response: any) => {
       this.added.emit(true);
-      console.log('response',response);
-    },(error)=>{
+      console.log('response', response);
+    }, (error) => {
       this.added.emit(false);
     })
   }
