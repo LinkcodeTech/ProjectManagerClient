@@ -20,6 +20,7 @@ import { BoardComponent } from './board/board.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddReportComponent } from './add-report/add-report.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 
 
@@ -40,7 +41,8 @@ import { AddReportComponent } from './add-report/add-report.component';
     AddProjectManagerComponent,
     BoardComponent,
     AddTaskComponent,
-    AddReportComponent
+    AddReportComponent,
+    EditTaskComponent
   ],
   imports: [
     NgMultiSelectDropDownModule,

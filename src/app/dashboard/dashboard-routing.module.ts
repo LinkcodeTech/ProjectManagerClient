@@ -14,29 +14,43 @@ import { ProjectManagerDetailsComponent } from './project-manager-details/projec
 import { AddProjectManagerComponent } from './add-project-manager/add-project-manager.component';
 import { BoardComponent } from './board/board.component';
 
-
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'project', pathMatch: 'full', },
+      { path: '', redirectTo: 'project', pathMatch: 'full' },
       { path: 'project', component: ProjectListComponent },
       { path: 'project/:id', component: ProjectDetailComponent },
       { path: 'project/:id/board', component: BoardComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'report', component: ReportComponent },
-      { path: 'add-project',canActivate:[AdminGuard], component: AddProjectComponent },
-      { path: 'add-developer',canActivate:[AdminGuard], component: AddDeveloperComponent },
+      {
+        path: 'add-project',
+        canActivate: [AdminGuard],
+        component: AddProjectComponent,
+      },
+      {
+        path: 'add-developer',
+        canActivate: [AdminGuard],
+        component: AddDeveloperComponent,
+      },
       { path: 'developer-details', component: DeveloperDetailsComponent },
-      { path: 'project-manager-details', component: ProjectManagerDetailsComponent },
-      { path: 'add-project-manager',canActivate:[AdminGuard], component: AddProjectManagerComponent },
-    ]
-  }
+      {
+        path: 'project-manager-details',
+        component: ProjectManagerDetailsComponent,
+      },
+      {
+        path: 'add-project-manager',
+        canActivate: [AdminGuard],
+        component: AddProjectManagerComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class DashboardRoutingModule { }
