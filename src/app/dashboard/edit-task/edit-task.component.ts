@@ -21,9 +21,11 @@ export class EditTaskComponent implements OnInit {
   isLoading = false;
   projectId: string;
   projectName: string;
+  isInvalid=false;
+
 
   @Input() task;
-
+  // defaultEmail=this.task.assignedTo.email;
   @Output() updated= new EventEmitter<boolean>();
 
   constructor(private readonly fb: FormBuilder,
@@ -37,7 +39,13 @@ export class EditTaskComponent implements OnInit {
   }
 
   onEditTaskClick() {
-    this.updateTask();
+    if(this.editTaskForm.valid)
+    {
+      this.updateTask();
+    }
+    else{
+      this.isInvalid=true;
+    }
   }
 
   private buildEditTaskForm(): FormGroup {
@@ -75,6 +83,10 @@ export class EditTaskComponent implements OnInit {
 
     this.taskService.updateTask(this.task._id,task).subscribe((response:any)=>{
       this.updated.emit(true);
+      Swal.fire({
+        icon: 'success',
+        title: 'Task has been successfully updated',
+      });
     },(error:any)=>{
       this.updated.emit(false);
       Swal.fire({

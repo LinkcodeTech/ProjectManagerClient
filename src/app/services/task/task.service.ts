@@ -14,4 +14,8 @@ export class TaskService {
   updateTask(id: string, task: any) {
     return this.http.put(environment.hostURL + `/task/${id}`, task);
   }
+
+  deleteTask(id:string){
+    return this.http.delete(`${environment.hostURL}/task/${id}`);
+  }
 }

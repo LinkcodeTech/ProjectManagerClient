@@ -7,6 +7,7 @@ import { Project } from 'src/app/interfaces/project.interface';
 import { ProjectDetailsService } from 'src/app/services/project-data-services/project-details.service';
 import { TaskService } from 'src/app/services/task/task.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-board',
@@ -111,6 +112,43 @@ export class BoardComponent implements OnInit {
       console.log('res', res);
       this.getProgressData();
     });
+  }
+
+  deleteAlert(id:string){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are You Sure?',
+      text: 'Selected task will be deleted',
+      showCancelButton: true,
+      confirmButtonText: `delete`,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    }).then((result) => {
+      if(result.value){
+        this.deleteTask(id)
+      }
+    })
+  }
+
+
+  deleteTask(id:string){
+    this.taskService.deleteTask(id).subscribe((response)=>{
+      this.getData();
+      Swal.fire({
+        icon: 'success',
+        title: 'task has been successfully deleted..',
+      });
+    },(error)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "We had an error in deletion..",
+      });
+    })
   }
 
   openModal(template: TemplateRef<any>) {

@@ -7,7 +7,7 @@
 
     <div class="component-border my-5">
         <h3 class="lead text-center text-primary my-3">
-            Edit Task In {{projectName}}
+            Update Task In {{projectName}}
         </h3>
 
         <div>
@@ -15,23 +15,23 @@
 
                 <div class="form-group">
                     <label for="ProjectName">Task Title</label>
-                    <input id="ProjectName" class="form-control form-control-lg" formControlName="title" type="text" name="">
+                    <input id="ProjectName" class="form-control" formControlName="title" type="text" name="" (keyup)="isInvalid=false">
                 </div>
                 <div class="form-group">
                     <label for="ProjectName">Task Description</label>
-                    <textarea id="ProjectName" class="form-control " formControlName="description" type="text" name=""></textarea>
+                    <textarea id="ProjectName" class="form-control " formControlName="description" type="text" name="" (keyup)="isInvalid=false"></textarea>
                 </div>
 
 
                 <div class="form-group">
                     <label for="ProjectManager">Assigned to : </label>
                     <select id="ProjectManager" formControlName="assignedTo" class="form-control">
-                        <option [value]="task.assignedTo.email" selected="selected">{{task.assignedTo.email}}</option>
-                        <option *ngFor="let developer of developers" [value]="developer._id">{{developer.email}}</option>
+                      <option disabled>Select developer</option>
+                      <option *ngFor="let developer of developers" [value]="developer._id">{{developer.email}}</option>
                       </select>
                 </div>
                 <div>
-
+                  <small class="text-danger" *ngIf="isInvalid">Form contains invalid fields..</small>
                 </div>
 
                 <div class="text-center">
