@@ -2,8 +2,13 @@ import { User } from './../../interfaces/user.interface';
 import { Project } from './../../interfaces/project.interface';
 import { ProjectDetailsService } from './../../services/project-data-services/project-details.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import Swal from 'sweetalert2';
+
+import { TaskService } from 'src/app/services/task/task.service';
+
 
 @Component({
   selector: 'app-edit-task',
@@ -16,10 +21,15 @@ export class EditTaskComponent implements OnInit {
   isLoading = false;
   projectId: string;
   projectName: string;
+
+  @Input() task;
+
+  @Output() updated= new EventEmitter<boolean>();
+
   constructor(private readonly fb: FormBuilder,
     private readonly projectDataService: ProjectDetailsService,
-    private readonly router: Router,
-    private active: ActivatedRoute) { }
+    private active: ActivatedRoute,
+    private taskService:TaskService) { }
 
   ngOnInit(): void {
     this.getDeveloperData();
@@ -27,15 +37,15 @@ export class EditTaskComponent implements OnInit {
   }
 
   onEditTaskClick() {
-
+    this.updateTask();
   }
 
   private buildEditTaskForm(): FormGroup {
     return this.fb.group(
       {
-        title: [null, Validators.required],
-        description: [null, Validators.required],
-        assignedTo: [null, Validators.required]
+        title: [this.task.title, Validators.required],
+        description: [this.task.description, Validators.required],
+        assignedTo: [this.task.assignedTo, Validators.required]
       }
     );
 
@@ -51,6 +61,28 @@ export class EditTaskComponent implements OnInit {
     }, (error) => {
       console.log('error', error);
     });
+  }
+
+
+  updateTask(){
+    const task = {
+      title: this.editTaskForm.get('title').value,
+      description: this.editTaskForm.get('description').value,
+      assignedTo: this.editTaskForm.get('assignedTo').value,
+      status: this.task.status,
+      projectId: this.projectId
+    };
+
+    this.taskService.updateTask(this.task._id,task).subscribe((response:any)=>{
+      this.updated.emit(true);
+    },(error:any)=>{
+      this.updated.emit(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops..!',
+        text : "update failed"
+      });
+    })
 
   }
 

@@ -40,11 +40,21 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)"
         >
-          <div class="example-box" *ngFor="let item of todo" cdkDrag>
+          <div class="example-box" *ngFor="let item of todo;index as i" cdkDrag>
             <h5>Title : {{ item.title }}</h5>
-            Description : {{ item.description }} <br />
-            AssignedTO : {{ item.assignedTo.firstName }}
-            {{ item.assignedTo.lastName }}
+            <div>
+              Description : {{ item.description }}
+            </div>
+            <div>
+              AssignedTO : {{ item.assignedTo.firstName }} {{ item.assignedTo.lastName }}
+            </div>
+            <div>
+              <button class="btn btn-warning mx-2" type="button" (click)="openModal(updateTemplate)">Update</button>
+              <button class="btn btn-danger mx-2" type="button">Delete</button>
+            </div>
+            <ng-template #updateTemplate>
+              <app-edit-task [task]="todo[i]" (updated)="modalRef.hide();getData();"></app-edit-task>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -58,11 +68,21 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)"
         >
-          <div class="example-box" *ngFor="let item of inprogress" cdkDrag>
+          <div class="example-box" *ngFor="let item of inprogress;index as i;" cdkDrag>
             <h5>Title : {{ item.title }}</h5>
-            Description : {{ item.description }} <br />
-            AssignedTO : {{ item.assignedTo.firstName }}
-            {{ item.assignedTo.lastName }}
+            <div>
+              Description : {{ item.description }}
+            </div>
+            <div>
+              AssignedTO : {{ item.assignedTo.firstName }} {{ item.assignedTo.lastName }}
+            </div>
+            <div>
+              <button class="btn btn-warning mx-2" type="button" (click)="openModal(updateTemplate)">Update</button>
+              <button class="btn btn-danger mx-2" type="button">Delete</button>
+            </div>
+            <ng-template #updateTemplate>
+              <app-edit-task [task]="inprogress[i]" (updated)="modalRef.hide();getData();"></app-edit-task>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -77,11 +97,21 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)"
         >
-          <div class="example-box" *ngFor="let item of done" cdkDrag>
+          <div class="example-box" *ngFor="let item of done;index as i" cdkDrag>
             <h5>Title : {{ item.title }}</h5>
-            Description : {{ item.description }} <br />
-            AssignedTO : {{ item.assignedTo.firstName }}
-            {{ item.assignedTo.lastName }}
+            <div>
+              Description : {{ item.description }}
+            </div>
+            <div>
+              AssignedTO : {{ item.assignedTo.firstName }} {{ item.assignedTo.lastName }}
+            </div>
+            <div>
+              <button class="btn btn-warning mx-2" type="button" (click)="openModal(updateTemplate)">Update</button>
+              <button class="btn btn-danger mx-2" type="button">Delete</button>
+            </div>
+            <ng-template #updateTemplate>
+              <app-edit-task [task]="done[i]" (updated)="modalRef.hide();getData();"></app-edit-task>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -92,3 +122,7 @@
 <ng-template #template>
   <app-add-task (added)="modalRef.hide(); getData()"></app-add-task>
 </ng-template>
+
+
+
+

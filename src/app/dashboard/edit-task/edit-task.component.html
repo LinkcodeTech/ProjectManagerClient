@@ -7,7 +7,7 @@
 
     <div class="component-border my-5">
         <h3 class="lead text-center text-primary my-3">
-            Add New Task To {{projectName}}
+            Edit Task In {{projectName}}
         </h3>
 
         <div>
@@ -24,9 +24,9 @@
 
 
                 <div class="form-group">
-                    <label for="ProjectManager">Assign To</label>
+                    <label for="ProjectManager">Assigned to : </label>
                     <select id="ProjectManager" formControlName="assignedTo" class="form-control">
-                        <option value="" disabled selected>Select Develper</option>
+                        <option [value]="task.assignedTo.email" selected="selected">{{task.assignedTo.email}}</option>
                         <option *ngFor="let developer of developers" [value]="developer._id">{{developer.email}}</option>
                       </select>
                 </div>
@@ -35,9 +35,8 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-success" type="button" (click)="onEditTaskClick()">Add Task</button>
+                    <button class="btn btn-primary" type="button" (click)="onEditTaskClick()">Update Task</button>
                 </div>
-
             </form>
 
         </div>
